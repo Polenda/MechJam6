@@ -1,0 +1,25 @@
+{
+  "dialogues": [
+    {
+      "name": "NPC1",
+      "id": 1,
+      "text": "Greetings, traveler!",
+      "choices": []
+    },
+    {
+      "Name": "NPC2",
+      "id": 1,
+      "text": "Welcome to our village. Do you seek anything?",
+      "choices": [
+        {"text": "Tell me about this village.", "next": 2},
+        {"text": "I'm just passing through.", "next": -1} 
+      ]
+    },
+    {
+      "name": "NPC2",
+      "id": 2,
+      "text": "This village is known for its ancient ruins.",
+      "choices": []
+    }
+  ]
+}
