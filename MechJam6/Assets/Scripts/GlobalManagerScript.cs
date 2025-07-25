@@ -10,6 +10,10 @@ public class GlobalManagerScript : MonoBehaviour
     public int playerINT = 0;
     public int playerSTR = 0;
     public int playerCHA = 0;
+
+    public int townDriftBond = 0;
+    public int townFlameBond = 0;
+    public int townSaltBond = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

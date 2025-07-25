@@ -1,4 +1,18 @@
 {
+    "comment": ["VARRIABLE NAMES",
+    "playerHealth",
+    "mechHealth",
+    "waterAmount",
+    "maxWaterAmount",
+
+    "playerINT",
+    "playerSTR",
+    "playerCHA",
+
+    "townDriftBond",
+    "townFlameBond",
+    "townSaltBond"],
+
   "dialogues": [
     {
       "name": "NPC1",
@@ -7,12 +21,12 @@
       "choices": []
     },
     {
-      "Name": "NPC2",
+      "name": "NPC2",
       "id": 1,
       "text": "Welcome to our village. Do you seek anything?",
       "choices": [
-        {"text": "Tell me about this village.", "next": 2},
-        {"text": "I'm just passing through.", "next": -1} 
+        {"text": "Tell me about this village.", "nextDialogueID": 2, "type": "townSaltBond", "amount": 1},
+        {"text": "I'm just passing through.", "nextDialogueID": -1} 
       ]
     },
     {
