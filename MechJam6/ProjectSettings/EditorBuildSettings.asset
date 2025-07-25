@@ -6,8 +6,20 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/HomeBase.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/Map Scene.unity
+    guid: 3e8f6f328dfd8f44fbd6c97db1b299fc
+  - enabled: 1
+    path: Assets/Scenes/SaltTown.unity
+    guid: 969a1d856375c994ea71de26602847df
+  - enabled: 1
+    path: Assets/Scenes/DriftTown.unity
+    guid: 810dbfa15a389f446951d4cf8719583a
+  - enabled: 1
+    path: Assets/Scenes/FlameTown.unity
+    guid: cc26c1940b164de4f95dbe48273a04d5
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
