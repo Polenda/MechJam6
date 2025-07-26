@@ -3,17 +3,25 @@ using UnityEngine.SceneManagement;
 
 public class TownManagerScript : MonoBehaviour
 {
-    public GameObject[] sceneObjects;
-    public TownObjectScript townObjectScript;
+    public TownObjectScript[] townObjectScript;
 
 
-    void Update()
+    public void townClicked()
     {
-        if (townObjectScript.clicked)
+        foreach (var obj in townObjectScript)
         {
-            SceneManager.LoadScene(townObjectScript.sceneIndex);
-            townObjectScript.clicked = false; 
-            Debug.Log("Town object clicked at scene index: " + townObjectScript.sceneIndex);
+            if (obj.clicked && obj.sceneUI.enabled)
+            {
+                obj.clicked = false;
+                obj.temp = false;
+                obj.sceneUI.enabled = false;
+
+            }
+            else if (obj.clicked && !obj.sceneUI.enabled)
+            {
+                obj.sceneUI.enabled = true;
+                Debug.Log("Town object clicked at scene index: " + obj.sceneUI.name);
+            }
 
         }
     }

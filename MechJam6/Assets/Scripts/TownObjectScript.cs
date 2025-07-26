@@ -3,15 +3,20 @@ using UnityEngine.InputSystem;
 
 public class TownObjectScript : MonoBehaviour
 {
-    public int sceneIndex;
+    public Canvas sceneUI;
     public bool clicked;
+    public TownManagerScript townManagerScript;
     public InputActionAsset InputActions;
 
     private InputAction clickAction;
 
+    public bool temp;
+
     void Start()
     {
         clicked = false;
+        temp = false;
+        sceneUI.enabled = false;
         clickAction = InputActions.FindAction("Click");
     }
 
@@ -23,6 +28,10 @@ public class TownObjectScript : MonoBehaviour
             if (hit.collider != null && hit.collider.gameObject == gameObject)
             {
                 clicked = true;
+                if (clicked && !temp) {
+                    temp = true;
+                    townManagerScript.townClicked();
+                }
             }
         }
     }
