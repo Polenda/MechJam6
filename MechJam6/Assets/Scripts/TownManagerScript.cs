@@ -21,6 +21,7 @@ public class TownManagerScript : MonoBehaviour
             {
                 obj.sceneUI.enabled = true;
                 Debug.Log("Town object clicked at scene index: " + obj.sceneUI.name);
+
             }
 
         }
