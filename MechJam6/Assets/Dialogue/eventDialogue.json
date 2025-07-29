@@ -11,7 +11,9 @@
 
     "townDriftBond",
     "townFlameBond",
-    "townSaltBond"],
+    "townSaltBond",
+  
+    "npc1Story"],
 
   "dialogues": [
     {
@@ -23,9 +25,10 @@
     {
       "name": "NPC2",
       "id": 1,
+      "story": 1,
       "text": "Welcome to our village. Do you seek anything?",
       "choices": [
-        {"text": "Tell me about this village.", "nextDialogueID": 2, "type": "townSaltBond", "amount": 1},
+        {"text": "Tell me about this village.", "nextDialogueID": 2, "value": "townSaltBond", "change": 1},
         {"text": "I'm just passing through.", "nextDialogueID": -1} 
       ]
     },
