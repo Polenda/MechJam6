@@ -7,12 +7,12 @@ public class csUi : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
-    public string SceneName;
+    public int Sceneid;
 
     public void SceneChanger()
     {
 
-        SceneManager.LoadScene(SceneName);
+        SceneManager.LoadScene(Sceneid);
 
 
     }
