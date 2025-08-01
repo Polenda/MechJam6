@@ -11,7 +11,7 @@ public class csUi : MonoBehaviour
 
     public void SceneChanger()
     {
-
+        Debug.Log("Scene change requested to scene ID: " + Sceneid);
         SceneManager.LoadScene(Sceneid);
 
 
