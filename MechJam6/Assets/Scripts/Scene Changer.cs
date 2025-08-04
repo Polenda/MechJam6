@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEditor;
 using UnityEditor.SearchService;
 using UnityEngine;
@@ -5,16 +6,29 @@ using UnityEngine.SceneManagement;
 
 public class csUi : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField] private fadeToBlackScript fadeScript;
 
-    public int Sceneid;
+    [SerializeField] private int Sceneid;
+
+    [SerializeField] private TownManagerScript townManagerScript;
+    [SerializeField] private Sprite map;
 
     public void SceneChanger()
     {
         Debug.Log("Scene change requested to scene ID: " + Sceneid);
         SceneManager.LoadScene(Sceneid);
 
-
     }
 
+    public void travelButton()
+    {
+        StartCoroutine(waitForFade());
+    }
+    IEnumerator waitForFade()
+    {
+        Debug.Log("Travel button clicked, starting fade to black");
+        yield return StartCoroutine(fadeScript.FadeToBlack());
+        townManagerScript.townObjectParent.SetActive(true);
+        StartCoroutine(fadeScript.FadeToClear());
+    }
 }

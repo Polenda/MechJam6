@@ -12,13 +12,13 @@ public class TownManagerScript : MonoBehaviour
     private InputAction clickAction;
     private bool pass = false;
 
-    [Header("Fade Settings")]
-    public Image fadeImage;
-    public float fadeDuration = 1f;
+    [SerializeField] private fadeToBlackScript fadeScript;
 
     [Header("Location Settings")]
+    public SpriteRenderer currentScene;
     [SerializeField] private TextMeshProUGUI infoText;
     [SerializeField] private GameObject textCanvas;
+    public GameObject townObjectParent;
     private int randomLocation = 1;
 
     // locations:
@@ -30,6 +30,8 @@ public class TownManagerScript : MonoBehaviour
 
     void Start()
     {
+
+        pass = false;
         textCanvas.SetActive(false);
         clickAction = InputActions.FindAction("Click");
     }
@@ -37,33 +39,31 @@ public class TownManagerScript : MonoBehaviour
     void Update()
     {
         if (clickAction.triggered && pass)
-        {   
+        {
             textCanvas.SetActive(false);
             pass = false;
 
-            StartCoroutine(FadeToClear());
+            StartCoroutine(fadeScript.FadeToClear());
         }
     }
 
     public void townClicked()
     {
+        randomLocation = Random.Range(1, 6);
+        Debug.Log("Random location selected: " + randomLocation);
         foreach (var obj in townObjectScript)
         {
-            if (obj.clicked && obj.sceneUI.enabled)
+            if (obj.clicked)
             {
                 obj.clicked = false;
                 obj.temp = false;
-                obj.sceneUI.enabled = false;
 
-            }
-            else if (obj.clicked && !obj.sceneUI.enabled)
-            {
-                StartCoroutine(FadeToBlack());
+                townObjectParent.SetActive(false);
+                StartCoroutine(foundTown());
             }
 
         }
-        randomLocation = Random.Range(1, 6);
-        Debug.Log("Random location selected: " + randomLocation);
+        
     }
 
     private void encounter()
@@ -75,57 +75,15 @@ public class TownManagerScript : MonoBehaviour
         else
         {
             infoText.text = "You make it to the town.";
-            foreach (var obj in townObjectScript)
-            {
-                if (obj.clicked && !obj.sceneUI.enabled)
-                {
-                    obj.sceneUI.enabled = true;
-                    Debug.Log("Town object clicked at scene index: " + obj.sceneUI.name);
-
-                }
-            }
         }
     }
 
-
-    IEnumerator FadeToBlack()
+    IEnumerator foundTown()
     {
-        Debug.Log("Fading to black");
-        float elapsed = 0f;
-        Color color = Color.black;
-        color.a = 0f;
-        fadeImage.color = color;
-        while (elapsed < fadeDuration)
-        {
-            elapsed += Time.deltaTime;
-            color.a = Mathf.Clamp01(elapsed / fadeDuration);
-            fadeImage.color = color;
-            yield return null;
-        }
-        color.a = 1f;
-        fadeImage.color = color;
-        WaitForSeconds wait = new WaitForSeconds(fadeDuration);
-        yield return wait;
+        yield return StartCoroutine(fadeScript.FadeToBlack());
         pass = true;
         textCanvas.SetActive(true);
         encounter();
     }
-    IEnumerator FadeToClear()
-    {
-        Debug.Log("Fading to clear");
-        float elapsed = 0f;
-        Color color = fadeImage.color;
-        fadeImage.color = color;
-
-        while (elapsed < fadeDuration)
-        {
-            elapsed += Time.deltaTime;
-            color.a = Mathf.Clamp01(1f - (elapsed / fadeDuration));
-            fadeImage.color = color;
-            yield return null;
-        }
-        color.a = 0f;
-        fadeImage.color = color;
-
-    }
+    
 }

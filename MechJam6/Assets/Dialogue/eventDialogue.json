@@ -1,13 +1,8 @@
 {
     "comment": ["VARRIABLE NAMES",
-    "playerHealth",
     "mechHealth",
     "waterAmount",
     "maxWaterAmount",
-
-    "playerINT",
-    "playerSTR",
-    "playerCHA",
 
     "townDriftBond",
     "townFlameBond",
@@ -25,7 +20,6 @@
     {
       "name": "NPC2",
       "id": 1,
-      "story": 1,
       "text": "Welcome to our village. Do you seek anything?",
       "choices": [
         {"text": "Tell me about this village.", "nextDialogueID": 2, "value": "townSaltBond", "change": 1},
