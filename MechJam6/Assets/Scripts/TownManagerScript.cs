@@ -22,11 +22,14 @@ public class TownManagerScript : MonoBehaviour
     private int randomLocation = 1;
 
     // locations:
-    // 1 = home
-    // 2 = town - salt
-    // 3 = town - flame
-    // 4 = town - drift
-    // 5 = encounter
+    // 0 = home
+    // 1 = town - salt
+    // 2 = town - flame
+    // 3 = town - drift
+    // 4 = encounter
+
+    private int chosenTown;
+    public TownDialogueScript townDialogueScript;
 
     void Start()
     {
@@ -42,6 +45,8 @@ public class TownManagerScript : MonoBehaviour
         {
             textCanvas.SetActive(false);
             pass = false;
+            townDialogueScript.NPCSpriteRenderer.enabled = true;
+            townDialogueScript.NPCDialoguePanel.SetActive(true);
 
             StartCoroutine(fadeScript.FadeToClear());
         }
@@ -49,32 +54,52 @@ public class TownManagerScript : MonoBehaviour
 
     public void townClicked()
     {
-        randomLocation = Random.Range(1, 6);
+        randomLocation = Random.Range(1, 5);
         Debug.Log("Random location selected: " + randomLocation);
-        foreach (var obj in townObjectScript)
+        for (int i = 0; i < townObjectScript.Length; i++)
         {
+            var obj = townObjectScript[i];
             if (obj.clicked)
             {
                 obj.clicked = false;
                 obj.temp = false;
 
                 townObjectParent.SetActive(false);
+                chosenTown = i;
                 StartCoroutine(foundTown());
+                break;
             }
-
         }
         
     }
 
     private void encounter()
     {
-        if (randomLocation == 5)
+        if (randomLocation == 4)
         {
             infoText.text = "You have encountered a wild creature!";
+            townDialogueScript.encounterNPCDialogue();
         }
         else
         {
             infoText.text = "You make it to the town.";
+            townDialogueScript.NPCSpriteRenderer.enabled = true;
+            if (chosenTown == 0)
+            {
+                townDialogueScript.homeNPCDialogue();
+            }
+            else if (chosenTown == 1)
+            {
+                townDialogueScript.saltNPCDialogue();
+            }
+            else if (chosenTown == 2)
+            {
+                townDialogueScript.flameNPCDialogue();
+            }
+            else if (chosenTown == 3)
+            {
+                townDialogueScript.driftNPCDialogue();
+            }
         }
     }
 

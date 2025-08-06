@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 64fafc239724f334d956cccd8d435d41
+guid: 917ff9bafb5f8c143ba9f46013989245
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4529028280330794137
-    second: Flamers temp_0
+      213: -431575847067211642
+    second: IMG_2676_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Flamers temp_0
+      name: IMG_2676_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 132
         y: 0
-        width: 3200
-        height: 1800
+        width: 543
+        height: 793
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 76b4f2d56c8a521c0800000000000000
-      internalID: -4529028280330794137
+      spriteID: 688abedbd0cb20af0800000000000000
+      internalID: -431575847067211642
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Flamers temp_0: -4529028280330794137
+      IMG_2676_0: -431575847067211642
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

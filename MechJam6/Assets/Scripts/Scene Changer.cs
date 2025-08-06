@@ -28,6 +28,8 @@ public class csUi : MonoBehaviour
     {
         Debug.Log("Travel button clicked, starting fade to black");
         yield return StartCoroutine(fadeScript.FadeToBlack());
+        townManagerScript.townDialogueScript.NPCSpriteRenderer.enabled = false;
+        townManagerScript.townDialogueScript.NPCDialoguePanel.SetActive(false);
         townManagerScript.townObjectParent.SetActive(true);
         StartCoroutine(fadeScript.FadeToClear());
     }
