@@ -26,6 +26,7 @@ public class csUi : MonoBehaviour
     [SerializeField] private Button homeButtonObject;
     [SerializeField] private AudioClip travelClip;
     [SerializeField] private AudioClip homeClip;
+    private int temp = 20;
 
     void Start()
     {
@@ -110,7 +111,8 @@ public class csUi : MonoBehaviour
         townManagerScript.townDialogueScript.NPCDialoguePanel.SetActive(false);
         townManagerScript.townObjectParent.SetActive(false);
         mapRenderer.sprite = homeMap;
-        globalManager.maxWaterAmount -= 30;
+        globalManager.maxWaterAmount -= temp;
+        temp += 10;
         globalManager.waterAmount += globalManager.maxWaterAmount;
         globalManager.week += 1;
 

@@ -41,6 +41,7 @@ public class TownDialogueScript : MonoBehaviour
     public bool end = false;
     private bool temp;
     public ClosingScript closingScript;
+    public bool doOnce;
 
     [System.Serializable]
     public class DialogueChoice
@@ -273,9 +274,10 @@ public class TownDialogueScript : MonoBehaviour
 
     void Update()
     {
-        if (clickAction.triggered && (pass || end))
+        if (clickAction.triggered && (pass || end) && doOnce)
         {
-
+            doOnce = false; // Prevent multiple triggers
+            Debug.Log("CLICK");
 
             if (currentEntry != null && currentEntry.choices != null && currentEntry.choices.Length == 1)
             {
@@ -285,6 +287,7 @@ public class TownDialogueScript : MonoBehaviour
                     pass = false; // Prevent multiple triggers
                     NewDialogue();
                     Debug.Log("Single choice dialogue ended.");
+
                 }
                 else if (choice.nextDialogueID == -1 && end)
                 {
@@ -314,6 +317,7 @@ public class TownDialogueScript : MonoBehaviour
         {
             end = false; // Reset end to false after handling single choice
             EndDialogue();
+
         }
         if (pass && currentEntry.choices.Length == 1 && currentEntry.choices[0].nextDialogueID == -1)
         {
@@ -329,9 +333,11 @@ public class TownDialogueScript : MonoBehaviour
         if (thisTemp)
         {
             pass = true;
+            doOnce = true;
         }
         else
         {
+            doOnce = true;
             end = true;
         }
     }

@@ -68,6 +68,7 @@ public class TownManagerScript : MonoBehaviour
     {
         yield return StartCoroutine(fadeScript.FadeToClear());
         Debug.Log("Fade to clear completed.");
+        townDialogueScript.doOnce = true;
         if (townDialogueScript.currentDialogueFileFileName == "encounterDialogue")
         {
             townDialogueScript.pass = true;
