@@ -112,7 +112,7 @@
       "id": 2,
       "text": "Headwoman Gula invites you to the far side of town, sequestered away from the lively square or overcrowded docks. Here, tall reeds recede gently into the lake, the sandy shore filled with insects and schools of tiny fish. 'This is one of the few flowers we’ve found that naturally desalinates the lake… and can resist the sunlight. 40 mules will help us establish a greenhouse to grow more of these before replanting them around the lake. What do you say?'",
       "choices": [
-        {"text": "Reclaiming the lake… if it can be done, it would change Elysium. Pay in full (40).", "nextDialogueID": 5, "value": ["townSaltBond", waterAmount], "change": [2, -40]},
+        {"text": "Reclaiming the lake… if it can be done, it would change Elysium. Pay in full (40).", "nextDialogueID": 5, "value": ["townSaltBond", "waterAmount"], "change": [2, -40]},
         {"text": "Pay less than full. (Display other options)", "nextDialogueID": 2}
       ]
     },
@@ -121,7 +121,7 @@
       "id": 3,
       "text": " You can’t divert that many resources to this one community right now. ",
       "choices": [
-        {"text": "Give them enough water to keep surviving, hopefully the flower can be cultivated in the future. Pay (25).", "nextDialogueID": 4, "value": ["townSaltBond", waterAmount], "change": [1, -25]},
+        {"text": "Give them enough water to keep surviving, hopefully the flower can be cultivated in the future. Pay (25).", "nextDialogueID": 4, "value": ["townSaltBond", "waterAmount"], "change": [1, -25]},
         {"text": "You can’t help them right now. Give them nothing (0).", "nextDialogueID": 4, "value": ["townSaltBond"], "change": [-2]}
       ]
     },
