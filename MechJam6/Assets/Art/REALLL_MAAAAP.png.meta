@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 81dfb6fc0e915124db96cbfdcbb46087
+guid: b660a156cde3ebb4bb1f0ed96656d0d9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1081796896449803101
-    second: elysium_map_right_proportions_0
+      213: 5740369989022663111
+    second: REALLL_MAAAAP_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,12 +113,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: elysium_map_right_proportions_0
+      name: REALLL_MAAAAP_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 3600
+        width: 3200
         height: 1800
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d53b204bb80530f00800000000000000
-      internalID: 1081796896449803101
+      spriteID: 7c1420b5714e9af40800000000000000
+      internalID: 5740369989022663111
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      elysium_map_right_proportions_0: 1081796896449803101
+      REALLL_MAAAAP_0: 5740369989022663111
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

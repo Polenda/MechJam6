@@ -40,8 +40,8 @@
       "id": 5,
       "text": "You're led towards the town square, where the Headwoman will be waiting for you. You slow your rig to a halt and turn away from the sun—disembarking into the safety of its shadow. As you disembark, you observe the loose, flowing clothes of the citizenry. You think: ",
       "choices": [
-        {"text": "Such light fabrics expose the skin to the vengeful sun. It’s a shortsighted and dangerous fashion statement.", "nextDialogueID": 6},
-        {"text": "You envy the freedom and joy of the community, uncowed by the dangers of prolonged sun exposure", "nextDialogueID": 6}
+        {"text": "Such light fabrics expose the skin to the vengeful sun. It’s a shortsighted and dangerous fashion statement.", "nextDialogueID": 6, "value": [], "change": []},
+        {"text": "You envy the freedom and joy of the community, uncowed by the dangers of prolonged sun exposure", "nextDialogueID": 6, "value": [], "change": []}
       ]
     },
     {
@@ -59,7 +59,7 @@
       "text": "Before you can fully leave, an older craftsman approaches you with a proposition. 'Shepherd, I use water-jet machining to work the salt crystals into jewelry and artwork. It’s my living—I beg you, share just 5 mules so that we can finish this months’ work!'",
       "choices": [
         {"text": "You’ve never heard of water being used for anything other than survival. You can spare 5 mules (5).", "nextDialogueID": -1, "value": ["townSaltBond", "waterAmount"], "change": [1, -5]},
-        {"text": "5 mules for one man’s business? You and the people depending on your supply cannot afford such waste.", "nextDialogueID": -1}
+        {"text": "5 mules for one man’s business? You and the people depending on your supply cannot afford such waste.", "nextDialogueID": -1, "value": [], "change": []}
       ]
     },
     {
@@ -67,8 +67,8 @@
       "id": 1,
       "text": "The road to New Kalhu provides you with a full view of the lake, with its stilt houses and winding docks. Today, the surface of the lake is coated in… oil? When you enter the town outskirts, you find yourself navigating a colorful celebration. Prismatic, swirled patterns of colors embroidered on cloths or painted on the faces of the townsfolk as they crowd the streets.",
       "choices": [
-        {"text": "You’ve never seen so many people looking so joyous. It makes you wonder what being part of that community must feel like.", "nextDialogueID": 2},
-        {"text": "You can think of the reactions of your colleagues at the Plant mistaking this for some sort of riot… the visual and audible noise makes you uncomfortable.", "nextDialogueID": 2}
+        {"text": "You’ve never seen so many people looking so joyous. It makes you wonder what being part of that community must feel like.", "nextDialogueID": 2, "value": [], "change": []},
+        {"text": "You can think of the reactions of your colleagues at the Plant mistaking this for some sort of riot… the visual and audible noise makes you uncomfortable.", "nextDialogueID": 2, "value": [], "change": []}
       ]
     },
     {
@@ -88,14 +88,14 @@
         {"text": "They will have to be happy with enough. Pay in half (25).", "nextDialogueID": 4, "value": ["townSaltBond", "waterAmount"], "change": [1, -25]},
         {"text": "There will be no water for New Kalhu this week. Hopefully they can ration their current supply (0).", "nextDialogueID": 4, "value": ["townSaltBond"], "change": [-2]}
       ]
-    }
+    },
     {
       "name": "Week2",
       "id": 4,
       "text": "Children at the edge of the lake strain their necks to look up at your mobile rig, the mechanical workhorse of industries past. They ask if you can make a big splash in the lake, so they can find rainbows in the mists. Something about a good omen.",
       "choices": [
         {"text": "Cleaning the saltwater from your joints will be a small price to pay for their peace of mind. You make the biggest splash you can, much to the elation of the children and the bewilderment of the nearby fishermen.", "nextDialogueID": -1, "value": ["townSaltBond"], "change": [1]},
-        {"text": "It seems reckless and dangerous, and you don’t want to participate in something you don’t fully understand. You respectfully but quietly lead your rig and flock away from the jubilance of the town, back to the quietude of your route.", "nextDialogueID": -1}
+        {"text": "It seems reckless and dangerous, and you don’t want to participate in something you don’t fully understand. You respectfully but quietly lead your rig and flock away from the jubilance of the town, back to the quietude of your route.", "nextDialogueID": -1, "value": [], "change": []}
       ]
     },
     {
@@ -103,8 +103,8 @@
       "id": 1,
       "text": "Your rig silently treks past the sunbleached grass fields. On the final stretch of road towards New Kalhu, you note the wilting leaves of the sparse trees. Part of you wonders what the next generation is going to do with Elysium. Eventually, your rig shuffles into town, every mechanical step measured and burdened. The townsfolk idly pass you by, accustomed to your visits and knowing to leave you enough space for transit.",
       "choices": [
-        {"text": "The townsfolk seem unbothered by the declining state of the world. Perhaps they’ve made peace with the time that they have left.", "nextDialogueID": 2},
-        {"text": "The townsfolk seem content enough in their circumstances—life has always been hard, and perhaps living without fear of the harsh sunlight is their way of rebelling against their circumstances. ", "nextDialogueID": 2}
+        {"text": "The townsfolk seem unbothered by the declining state of the world. Perhaps they’ve made peace with the time that they have left.", "nextDialogueID": 2, "value": [], "change": []},
+        {"text": "The townsfolk seem content enough in their circumstances—life has always been hard, and perhaps living without fear of the harsh sunlight is their way of rebelling against their circumstances. ", "nextDialogueID": 2, "value": [], "change": []}
       ]
     },
     {
@@ -113,7 +113,7 @@
       "text": "Headwoman Gula invites you to the far side of town, sequestered away from the lively square or overcrowded docks. Here, tall reeds recede gently into the lake, the sandy shore filled with insects and schools of tiny fish. 'This is one of the few flowers we’ve found that naturally desalinates the lake… and can resist the sunlight. 40 mules will help us establish a greenhouse to grow more of these before replanting them around the lake. What do you say?'",
       "choices": [
         {"text": "Reclaiming the lake… if it can be done, it would change Elysium. Pay in full (40).", "nextDialogueID": 5, "value": ["townSaltBond", "waterAmount"], "change": [2, -40]},
-        {"text": "Pay less than full. (Display other options)", "nextDialogueID": 2}
+        {"text": "Pay less than full. (Display other options)", "nextDialogueID": 2, "value": [], "change": []}
       ]
     },
     {
@@ -129,14 +129,13 @@
       "name": "Week3",
       "id": 4,
       "text": "'There’s so many of us, Shepherd. I know you have other towns to tend for, but… if we reclaim this lake, the Plant wouldn’t have to make the hard choices about who gets water and who doesn’t. I pray one day you’ll see that.' You’re led out of town.",
-      "choices": ["nextDialogueID": -1]
+      "choices": [{"nextDialogueID": -1}]
     },
     {
       "name": "Week3",
       "id": 5,
       "text": "Some youth start hooking up your mules to the greenhouse irrigation system. You notice the burn scars on their skin, wondering if that will be normal for these people who live without fear of the sun. Headwoman Gula bows towards you, and you are filled with an anxious hope. If the people of New Kalhu and the Salt Marshes succeed, maybe Elysium won’t succumb to a slow death.",
-      "choices": ["nextDialogueID": -1}
-      ]
-    },
+      "choices": [{"nextDialogueID": -1}]
+    }
   ]
 }

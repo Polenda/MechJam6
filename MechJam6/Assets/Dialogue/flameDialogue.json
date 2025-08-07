@@ -41,7 +41,7 @@
       "text": "A signalwoman with blue braids waves you over and you approach the lead rig. Patching into your computer feed from his rig, STEADFAST, the Coquille Chief appears. Tiredly, he asks, 'Ho there, stranger. Our people don’t need much, 25 mules for our civil projects, stockpiling, basic needs. You know the sort. If there’s others you’re off to help, we can make do with 13.'",
       "choices": [
 	{"text": "They seem like honest people, the civil projects would explain the demolition from the mobile rigs. Pay in full (25).", "nextDialogueID": 6, "value": ["townFlameBond", "waterAmount"], "change": [2, -25]},
-	{"text": "Stockpiling for what? A small population in an isolated location maintaining so many rigs… you’re not sure. Pay in half (13).", "nextDialogueID": 6, "value": ["townFlameBond", "waterAmount"], "change": [1, 13]},
+	{"text": "Stockpiling for what? A small population in an isolated location maintaining so many rigs… you’re not sure. Pay in half (13).", "nextDialogueID": 6, "value": ["townFlameBond", "waterAmount"], "change": [1, 13]}
       ]
     },
     {
@@ -58,8 +58,8 @@
       "id": 1,
       "text": "On your approach to the Coquille Tribe, your route takes you past trails belonging to other tribes of the Redwoods. You wonder if their locales are as ruined as the Coquille. As you approach the city, you try to discern any meaningful changes to the landscape. Unfortunately, the chaos of the rubble makes it difficult to tell if they’ve expanded outwards from the park any further. Smoke lingers, floating high above the treeline and blocking your view of the sun and stars. There is a rig on guard duty, observing your approach. ",
       "choices": [
-        {"text": "The Chief seemed amiable last time. Stop to chat to the rig on duty.", "nextDialogueID": 2},
-        {"text": "Politely and efficiently keep your flock moving into the heart of the city.", "nextDialogueID": 3}
+        {"text": "The Chief seemed amiable last time. Stop to chat to the rig on duty.", "nextDialogueID": 2, "value": [], "change": []},
+        {"text": "Politely and efficiently keep your flock moving into the heart of the city.", "nextDialogueID": 3, "value": [], "change": []}
       ]
     }, 
     {
@@ -68,7 +68,7 @@
       "text": "In a pleasant surprise, the guard recognizes you as the new shepherd. They ask how the other townships are faring in their water situation. An earnest and anxious question you’ve heard many times, though the Plant always warned you about divulging too much information between your clients.",
       "choices": [
         {"text": "There is a dwindling water supply, you answer honestly. Things in Elysium might get worse before they get better.", "nextDialogueID": 3, "value": ["townFlameBond"], "change": [1]},
-        {"text": "The other towns on your route aren’t in any immediate danger of dying out, you say cautiously. On your route, at least, the other towns are fine.", "nextDialogueID": 3}
+        {"text": "The other towns on your route aren’t in any immediate danger of dying out, you say cautiously. On your route, at least, the other towns are fine.", "nextDialogueID": 3, "value": [], "change": []}
       ]
     }, 
     {
@@ -77,7 +77,7 @@
       "text": "You lead your rig over to the Chief’s rig, which is currently excavating some ancient city water lines. 'Hope you didn’t find trouble on the way here, Shepherd. There’s bandits and bad memories lurking in these woods… Well, 25 mules will help us push some projects ahead, but 13’s all we need if you can spare it.'",
       "choices": [
         {"text": "Pay in full (25). Then ask a question.", "nextDialogueID": 5, "value": ["townFlameBond", "waterAmount"], "change": [2, -25]},
-        {"text": "Pay a smaller amount (next option).", "nextDialogueID": 4}
+        {"text": "Pay a smaller amount (next option).", "nextDialogueID": 4, "value": [], "change": []}
       ]
     }, 
     {
@@ -86,7 +86,7 @@
       "text": "The Plant’s water supply is dwindling, and you’ve started to find more reasons to save your money for the individuals you meet on the road. How much water will you spare the Coquille tribe?",
       "choices": [
         {"text": "Times are tough, and you suspect there’s side projects that might appreciate the water you save here. Pay half (13).", "nextDialogueID": -1, "value": ["townFlameBond", "waterAmount"], "change": [1, -13]},
-        {"text": "There are others who need you this week. Pay none (0).", "nextDialogueID": -1}
+        {"text": "There are others who need you this week. Pay none (0).", "nextDialogueID": -1, "value": [], "change": []}
       ]
     }, 
     {
@@ -94,35 +94,35 @@
       "id": 5,
       "text": "'You’re kind to us this week, Shepherd.' The Chief grunts as he continues his work. You maneuver your rig to assist, relieving the load on his mechanical joints. As you’re replacing the central city sanitation system, you find an opportunity to ask him a question.",
       "choices": [
-        {"text": "What’s with all the smoke in the sky?", "nextDialogueID": 6},
-        {"text": "Why do your people maintain so many rigs? Or… how?", "nextDialogueID": 6}
+        {"text": "What’s with all the smoke in the sky?", "nextDialogueID": 6, "value": [], "change": []},
+        {"text": "Why do your people maintain so many rigs? Or… how?", "nextDialogueID": 6, "value": [], "change": []}
       ]
     }, 
     {
       "name": "Week2",
       "id": 6,
       "text": "The Chief grunts. 'In the Old War, lots of the cities in the redwoods got hit hard. Ancient chemicals lit up and never stopped burning, or factories we’d repurposed wouldn’t stop churning out soot. The weapons unleashed in that war… they’re still bleeding us and our forest. Plant enough trees and maybe we’ll get to see the sky again someday. That’s how we think about it, anyway.' Distantly, you wonder how dangerous the united redwood tribes must have been in the Old War. By supplying them, were you giving them a second chance at a future, or the stockpiles for their next war?",
-      "choices": ["nextDialogueID": 7]
+      "choices": [{"nextDialogueID": 7}]
     }, 
     {
       "name": "Week2",
       "id": 7,
       "text": "You raise your camera towards the sky, and wonder if slow suffocation by soot was really all that bad. Once the Northern Lights were praised for their beauty, but sometimes all you see is how desperately the solar winds tear away at the weakened atmosphere —desperate to engulf Elysium in cancerous sunrays. Green lightning and haunting rays of light hang over your head every night, like the souls of the dead. ",
-      "choices": ["nextDialogueID": 8]
+      "choices": [{"nextDialogueID": 8}]
     }, 
     {
       "name": "Week2",
       "id": 8,
       "text": "The Chief curls his lip. 'The redwoods aren’t strangers to fire. With how big the trees are and how dense the forest is, without these rigs… we couldn’t stop a threat once it got going.' His tone of voice tells you that this is the end of the discussion. For now, at least. When the work finishes, he thanks you for your graciousness, and you gather your flock to leave. It dawns on you that the Coquille act like they’re still bandaging old scars.",
-      "choices": ["nextDialogueID": -1]
-    }, 
+      "choices": [{"nextDialogueID": -1}]
+    },
     {
       "name": "Week3",
       "id": 1,
       "text": "Your beleaguered flock loyally follows you through the safe anonymity of the forest. The smoke-filled sky bounces with orange and red light, and visibility seems worse than usual. As you pick your way through the rubble to the heart of the city, you begin to realize the absence of the Coquille riggers. You come to a halt outside of the garden, where soot-stained workers are scurrying about with stretchers and a sense of urgency. The Chief is not here, instead you are waved over by the signalwoman with blue braids. ",
       "choices": [
-        {"text": "She introduced herself as Lost River, though whether it was a translation, name, or a title, you weren’t sure. You recognize her from prior visits, perhaps she can tell you what’s going on.", "nextDialogueID": 2},
-        {"text": "She’s been left to organize the emergency work here. Things must be dire, you hope that you can help. ", "nextDialogueID": 2}
+        {"text": "She introduced herself as Lost River, though whether it was a translation, name, or a title, you weren’t sure. You recognize her from prior visits, perhaps she can tell you what’s going on.", "nextDialogueID": 2, "value": [], "change": []},
+        {"text": "She’s been left to organize the emergency work here. Things must be dire, you hope that you can help. ", "nextDialogueID": 2, "value": [], "change": []}
       ]
     }, 
     {
@@ -131,7 +131,7 @@
       "text": "'Shepherd, please! Can you spare 25 mules for the sick and wounded? Fires are spreading from Liksiyu and all of our rigs have answered their call for help. I was told to respect your business but… with your mules, you could help firefight! Please…'",
       "choices": [
         {"text": "You will not condemn these refugees and workers if you can help it. Pay in full (25).", "nextDialogueID": 4, "value": ["townFlameBond", "waterAmount"], "change": [2, -25]},
-        {"text": "Pay less than full (see other choices).", "nextDialogueID": 3}
+        {"text": "Pay less than full (see other choices).", "nextDialogueID": 3, "value": [], "change": []}
       ]
     }, 
     {
@@ -156,8 +156,7 @@
       "name": "Week3",
       "id": 5,
       "text": "Angry tears flow from the signalwoman, but they can spare no more time or energy on you. They focus their efforts on coordinating the crowd, supplies, and space in this locale. With a slow wave of your antenna-staff, your rig, OSIRIS, leaves wordlessly.",
-      "choices": ["nextDialogueID": -1}
-      ]
+      "choices": [{"nextDialogueID": -1}]
     }, 
     {
       "name": "Week3",
@@ -173,17 +172,15 @@
       "id": 7,
       "text": "You reach what must be the end of the world. Fires climb the seven-story redwood trees and create pillars of flame. Concrete pops and explodes from heat pressure, impeding the terrain of the city outskirts. You can barely see a block ahead of you, the smoke is too thick. You find a rig half-buried in a collapsed building, ancient insulation and furniture still burning.",
       "choices": [
-        {"text": "Carefully try to excavate the rig, hopefully the pilot inside is still breathing. ", "nextDialogueID": 8},
-        {"text": "Mark this location and move on. This rig is clearly done for, and you need to find more people to help.", "nextDialogueID": 9}
+        {"text": "Carefully try to excavate the rig, hopefully the pilot inside is still breathing. ", "nextDialogueID": 8, "value": [], "change": []},
+        {"text": "Mark this location and move on. This rig is clearly done for, and you need to find more people to help.", "nextDialogueID": 9, "value": [], "change": []}
       ]
     }, 
     {
       "name": "Week3",
       "id": 8,
       "text": "With precious time spent carefully sifting through the rubble, you narrowly manage to pull the rig away from the mess. Your heat sensors are off the charts, but you see the markings of this rig are… familiar. STEADFAST. You see there’s still traces of power in the other rig but it seems unstable—you’d have to disembark to manually pry open their cockpit if you want to save the pilot. You take a deep breath. Pushing open your hatch, you scramble to their cockpit. The searing heat of the metal slowly penetrates your operator’s gloves as you lift the hatch, finding the semi-conscious Coquille Chief.",
-      "choices": [
-        {"text": "It's time to go.", "nextDialogueID": 10}
-      ]
+      "choices": [{"nextDialogueID": 10}]
     }, 
     {
       "name": "Week3",
@@ -199,9 +196,9 @@
       "id": 10,
       "text": "After long hours of navigating the burning city and making your way back to the Coquille, you drop off those you saved with the signalwoman. The extreme heat from the city cost you three of your mules on the return journey. You see that other Coquille riggers are shuffling in with their refugees, and you wonder if they will ever plant enough trees to rebuild what was lost. If they will ever plant enough trees to clear the soot from their skies.",
       "choices": [
-        {"text": "It’s a noble dream backed by hard-working people. ", "nextDialogueID": -1},
-        {"text": "Elysium might destroy them before they get a chance to finish. ", "nextDialogueID": -1}
+        {"text": "It’s a noble dream backed by hard-working people. ", "nextDialogueID": -1, "value": [], "change": []},
+        {"text": "Elysium might destroy them before they get a chance to finish. ", "nextDialogueID": -1, "value": [], "change": []}
       ]
-    }, 
+    }
   ]
 }

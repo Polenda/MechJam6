@@ -1832,7 +1832,7 @@ MonoBehaviour:
   fadeScript: {fileID: 574539468}
   Sceneid: 0
   townManagerScript: {fileID: 574539466}
-  map: {fileID: 1081796896449803101, guid: 81dfb6fc0e915124db96cbfdcbb46087, type: 3}
+  map: {fileID: 5740369989022663111, guid: b660a156cde3ebb4bb1f0ed96656d0d9, type: 3}
   homeMap: {fileID: -8181437094434926060, guid: 09f8500ea807bd14cab7972639c313ea, type: 3}
   mapRenderer: {fileID: 1727559346}
   globalManager: {fileID: 857969343}
@@ -2311,7 +2311,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myBool: 0
-  text: {fileID: 0}
+  text: {fileID: 925362557}
 --- !u!4 &1054056766
 Transform:
   m_ObjectHideFlags: 0
@@ -2418,11 +2418,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2579329357495272001, guid: 7ae681fc90b46d54b97afd4aa8bb5383, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.85
+      value: -7.35
       objectReference: {fileID: 0}
     - target: {fileID: 2579329357495272001, guid: 7ae681fc90b46d54b97afd4aa8bb5383, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -11.39
+      value: -11.36
       objectReference: {fileID: 0}
     - target: {fileID: 2579329357495272001, guid: 7ae681fc90b46d54b97afd4aa8bb5383, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3120,11 +3120,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2579329357495272001, guid: 7ae681fc90b46d54b97afd4aa8bb5383, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.23
+      value: -2.67
       objectReference: {fileID: 0}
     - target: {fileID: 2579329357495272001, guid: 7ae681fc90b46d54b97afd4aa8bb5383, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -10.5
+      value: -10.49
       objectReference: {fileID: 0}
     - target: {fileID: 2579329357495272001, guid: 7ae681fc90b46d54b97afd4aa8bb5383, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3311,7 +3311,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -8181437094434926060, guid: 09f8500ea807bd14cab7972639c313ea, type: 3}
+  m_Sprite: {fileID: 5740369989022663111, guid: b660a156cde3ebb4bb1f0ed96656d0d9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4176,7 +4176,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2579329357495272001, guid: 7ae681fc90b46d54b97afd4aa8bb5383, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.41
+      value: -10.89
       objectReference: {fileID: 0}
     - target: {fileID: 2579329357495272001, guid: 7ae681fc90b46d54b97afd4aa8bb5383, type: 3}
       propertyPath: m_LocalPosition.y

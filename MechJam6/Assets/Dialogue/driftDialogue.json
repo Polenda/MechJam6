@@ -40,23 +40,32 @@
       "id": 5,
       "text": "'Welcome to our Veil. We will pay our tribute for 13 mules’ water, if you really came to render such services. 7 mules grants us drinking water, but stifles our nomadicism. The coolant needed to travel long hours in the rigs… well, I’m sure you’re familiar.'",
       "choices": [
-	{"text": "You can support their way of life for now. Pay in full (13).", "nextDialogueID": 6, "value": ["townDriftBond", "waterAmount"], "change": [2, -13]},
-	{"text": "Their wandering seems aimless, like a luxury. Surely they can stay put for one week. Pay in half (7).", "nextDialogueID": 7, "value": ["townDriftBond", "waterAmount"], "change": [-1, -7]},
+        {"text": "You can support their way of life for now. Pay in full (13).", "nextDialogueID": 6, "value": ["townDriftBond", "waterAmount"], "change": [2, -13]},
+        {"text": "Their wandering seems aimless, like a luxury. Surely they can stay put for one week. Pay in half (7).", "nextDialogueID": 7, "value": ["townDriftBond", "waterAmount"], "change": [-1, -7]}
       ]
     },
     {
       "name": "Week1",
       "id": 6,
       "text": "'Your trust in strangers, good Shepherd, is a mark in your favor. From your position of power, that you would still try to treat us fairly, though our ways are foreign to you… human virtue has not yet been extinguished from Elysium, it seems. Call me Charon, and may the stars light your path on your travels.' THESEUS shambles away to lead your mules to the rest of the caravan’s improvised tents.",
-      "choices": ["nextDialogueID": 8]
+      "choices": [{ "nextDialogueID": 8 }]
     },
     {
       "name": "Week1",
       "id": 7,
       "text": "'... I see. Even the Plant must have limited supplies… all the more reason…' THESEUS’ pilot mutters to themselves before staggering away to lead the mules to the rest of the caravan. It seemed the village elder wasn’t even disappointed, just tired. Well, perhaps next week you will find out more.",
       "choices": [
-	{"text": "They seem quick to judgment and suspicion.", "nextDialogueID": 8},
-	{"text": "You know many who would react far worse to being at minimum water thresholds for their entire lives.", "nextDialogueID": 8},
+        {"text": "They seem quick to judgment and suspicion.", "nextDialogueID": 8, "value": [], "change": []},
+        {"text": "You can’t help but feel that they are hiding something. ", "nextDialogueID": 8, "value": [], "change": []}
+      ]
+    },
+    {
+      "name": "Week1",
+      "id": 8,
+      "text": "'We are not the only ones who have been forced to Elysium, Shepherd. The Plant has abandoned us, and we have no choice but to make our own way in this world. We will not be beholden to them any longer.' THESEUS’ pilot turns away from you, and you are left with a sense of unease.",
+      "choices": [
+        {"text": "You wonder what they mean by 'abandoned'.", "nextDialogueID": 9, "value": [], "change": []},
+	      {"text": "You know many who would react far worse to being at minimum water thresholds for their entire lives.", "nextDialogueID": 8, "value": [], "change": []}
       ]
     },
     {
@@ -64,7 +73,7 @@
       "id": 8,
       "text": "As you’re leaving, you notice a cloaked rig waiting by the roadside. PARIS signals through your computer screen, 'Spare me a mule, Shepherd? When I’m safely away, come find me and I will tell you of the ultimate betrayal of my people. But I can stomach this caravan no longer, and I beg your aid in making a life for myself elsewhere.'",
       "choices": [
-        {"text": "Ultimate betrayal? A little dramatic, and you’re not sure if you’ll upset the Drifters by helping this runaway Do not help (0).", "nextDialogueID": 9},
+        {"text": "Ultimate betrayal? A little dramatic, and you’re not sure if you’ll upset the Drifters by helping this runaway Do not help (0).", "nextDialogueID": 9, "value": [], "change": []},
         {"text": "You don’t fully understand his desperation, but then, you don’t need to. It’s clear he needs help, and you can offer it. Spare him a mule (1).", "nextDialogueID": 9, "value": ["waterAmount"], "change": [-1]} 
       ]
     },
@@ -72,7 +81,7 @@
       "name": "Week1",
       "id": 9,
       "text": "Other Drifters are slowly rising from their stationary configurations, and your meeting abruptly ends with PARIS turning and dashing along the route you took to get here. Before it has fully fled, your sensors register its name change: PROMETHEUS. You wonder if you will meet again.",
-      "choices": ["nextDialogueID": -1]
+      "choices": [{"nextDialogueID": -1}]
     },
     {
       "name": "Week2",
@@ -80,7 +89,7 @@
       "text": "Tracking down the Drifters’ Veil was always a challenge in and of itself. Their last message to the Plant gave you a general area to search, but part of you wonders why they have to make it hard on themselves to receive life-sustaining water. As you crest a hill, you stumble upon their black pitched tents huddled in the grassy valley. THESEUS finds you shortly. 'Welcome again to our Veil, Shepherd…' Again, he asks for 13 mules.",
       "choices": [
         {"text": "Pay in full (13).", "nextDialogueID": 4, "value": ["townDriftBond", "waterAmount"], "change": [2, -13]},
-        {"text": "Pay less than full (display other options).", "nextDialogueID": 2} 
+        {"text": "Pay less than full (display other options).", "nextDialogueID": 2, "value": [], "change": []} 
       ]
     },
     {
@@ -96,13 +105,13 @@
       "name": "Week2",
       "id": 3,
       "text": "For a moment, there is silence. Then, wordlessly, THESEUS turns to leave you, their cloak fluttering behind and obscuring them. What arrogant, strange people. You wonder if they would choose similarly in your shoes, knowing the state of the Plant and Elysium.",
-      "choices": ["nextDialogueID": -1]
+      "choices": [{"nextDialogueID": -1}]
     },
     {
       "name": "Week2",
       "id": 4,
       "text": "'Water goes to more than just our coolant, Shepherd. In truth, on the backs of our most trusted people, we carry the means to separate the hydrogen from the oxygen in the distilled water you deliver us. Hydrogen, difficult as it is to store, burns cleanly, that we might travel without scarring the land. It’s lightweight, and it has an incredible energy density. When we have found what we are looking for, I hope that we can then share this old technology with the rest of Elysium.'",
-      "choices": ["nextDialogueID": -1]
+      "choices": [{"nextDialogueID": -1}]
     },
     {
       "name": "Week3",
@@ -110,7 +119,7 @@
       "text": "You find the Drifters at the foot of the mountains closing in the valley you’ve come to know. THESEUS patches into your screen, but the voice is different. 'Shepherd. 13 mules are not for our travel, but for our rebirth. Time is short, make your choice. Ally of humanity, or shortsighted fool.'",
       "choices": [
         {"text": "What? Sure, pay in full. (13)", "nextDialogueID": 3, "value": ["townDriftBond", "waterAmount"], "change": [2, -13]},
-        {"text": "Pay less than full (display other options).", "nextDialogueID": 2} 
+        {"text": "Pay less than full (display other options).", "nextDialogueID": 2, "value": [], "change": []}
       ]
     },
     {
@@ -127,8 +136,8 @@
       "id": 3,
       "text": "'With this, we can bring electricity back to the facility… people won’t be trapped on Elysium much longer. Humanity can be saved…!' The Drifters abruptly turn and leave, leading your mules up a long and winding mountain trail. It may take them many days to reach the top. You, at least, have done what they asked of you.",
       "choices": [
-        {"text": "You hope that their discovery can’t be turned against others.", "nextDialogueID": -1},
-        {"text": "You’re sure that you will hear news of their triumph, whatever it is, in the weeks to come.", "nextDialogueID": -1} 
+        {"text": "You hope that their discovery can’t be turned against others.", "nextDialogueID": -1, "value": [], "change": []},
+        {"text": "You’re sure that you will hear news of their triumph, whatever it is, in the weeks to come.", "nextDialogueID": -1, "value": [], "change": []}
       ]
     },
     {
@@ -136,8 +145,8 @@
       "id": 4,
       "text": "'You… the Plant keeps choking us out, trying to keep themselves in power… can’t you see this is bigger than your paranoia and distrust? Bigger than the other towns you supply with no plan for their own futures? People… Perhaps this is why we were condemned to Elysium…' THESEUS skulks away, mobilizing the Veil. You watch as they begin a slow trek up the mountain, leaving you and your flock in the dust.",
       "choices": [
-        {"text": "You wonder if even their own people know what THESEUS is talking about anymore. ", "nextDialogueID": -1},
-        {"text": "It truly is a shame.", "nextDialogueID": -1} 
+        {"text": "You wonder if even their own people know what THESEUS is talking about anymore. ", "nextDialogueID": -1, "value": [], "change": []},
+        {"text": "It truly is a shame.", "nextDialogueID": -1, "value": [], "change": []}
       ]
     }
   ]

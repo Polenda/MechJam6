@@ -343,14 +343,14 @@ public class TownDialogueScript : MonoBehaviour
     public void flameNPCDialogue()
     {
         currentNPC = 2;
-        NPCSpriteRenderer.sprite = NPCsprites[2];
+        NPCSpriteRenderer.sprite = NPCsprites[1];
         LoadDialogueFile("flameDialogue"); // flameDialogue.json
         ShowDialogue(globalManagerScript.flameStory + 1);
     }
     public void driftNPCDialogue()
     {
         currentNPC = 3;
-        NPCSpriteRenderer.sprite = NPCsprites[1];
+        NPCSpriteRenderer.sprite = NPCsprites[2];
         LoadDialogueFile("driftDialogue"); // driftDialogue.json
         ShowDialogue(globalManagerScript.driftStory + 1);
     }
