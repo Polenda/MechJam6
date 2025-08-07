@@ -14,29 +14,260 @@
     {
       "name": "NPC1",
       "id": 1,
-      "text": "Greetings, traveler!",
-      "choices": []
+      "text": "The solar winds are particularly viscous today, topping the chart of your UV weather index. Daytime travel has so far granted you safe passage because of visibility and circadian rest cycles, but perhaps switching up your schedule could provide other benefits.",
+      "choices": [
+        {"text": "Continue traveling during the daytime, risking heat exhaustion for you and your rig’s motors.", "nextDialogueID": -1},
+        {"text": "Travel at night, risking bandit attacks but avoiding overheating issues.", "nextDialogueID": -1} 
+      ]
+    },
+    {
+      "name": "NPC1",
+      "id": 2,
+      "text": "A rig resembling your OSIRIS, waving a more elegant antenna-staff with a curve on its end, crosses paths with you. Rig SUIJIN, you realize, their route is almost adjacent to yours. Both of you halt your mechs to cast overlapping shadows and disembark to greet each other. 'Aten, it’s so nice to see you outside the Plant! How’re things so far?' Ziwa smiles and hugs you.",
+      "choices": [
+        {"text": "'It’s bright. Hard on the eyes.'", "nextDialogueID": 3},
+        {"text": "'It really is… beautiful.'", "nextDialogueID": 3} 
+      ]
+    },
+    {
+      "name": "NPC1",
+      "id": 3,
+      "text": "She rolls her eyes and points to the cameras on your cockpit. 'You’ve got settings to dampen the glare, I can show you.' As she climbs OSIRIS, you notice she’s wearing low-heel woolen shoes, rather than the no-slip boots of the Plant.",
+      "choices": [
+        {"text": "They look more comfortable for the long hours in the rig.", "nextDialogueID": 4},
+        {"text": "You’d rather the safety of the boots when you’re dealing with maintenance grease and inspecting your flock.", "nextDialogueID": 4} 
+      ]
+    },
+    {
+      "name": "NPC1",
+      "id": 4,
+      "text": "As you both finish your smalltalk, mostly just her talking, you finally begin to say your goodbyes. The shadows of your rigs have shifted slightly over the hour you’ve spent resting, and you spare one last glance to Ziwa. Even the Plant has a sense of community, and you’re glad you don’t have to entirely leave it behind on your deliveries. As you close the hatch, something jingles over your head. You find a flower keychain with a note attached: 'Congratulations on your first delivery!'",
+      "choices": [
+        {"text": "You never thought about having personal items in OSIRIS. This is nice.", "nextDialogueID": -1},
+        {"text": "The silence of your travel is much louder after she leaves.", "nextDialogueID": -1} 
+      ]
+    },
+    {
+      "name": "NPC1",
+      "id": 5,
+      "text": "As you’re turning away, your audio warning light flashes. Searching your monitor, you realize a fight’s broken out in the water line—do you intervene?",
+      "choices": [{"text": "Walk your rig to the center of the conflict, physically separating the belligerents and casting them in the shadow of your 20 tons of steel.", "nextDialogueID": 6} 
+      ]
+    },
+    {
+      "name": "NPC1",
+      "id": 6,
+      "text": "Your travels have taken you near the border of the redwoods and the Northsea, but you see sparks of clashing steel in the distance. After a moment, it ceases. Staying well away, you try to observe the combatants but the night makes it difficult. You’re surprised when your monitor connects to the pilot of the DRUZHINA: 'The redwood wardens are bloodthirsty, scared dogs, trying to chase a wounded animal off of their grounds! You, Shepherd, I beseech your aid. Lead me down the path you just came from, or there will be needless bloodshed. Mine… or theirs.'",
+      "choices": [
+        {"text": "They speak with the diction of a Dawnite noble… curiously, you will cooperate to avoid further violence. ", "nextDialogueID": 8},
+        {"text": "Run away, don’t let them drag you into a confrontation. You have too many peoples’ lives in the hands of your flock to compromise for one man.", "nextDialogueID": 7} 
+      ]
+    },
+    {
+      "name": "NPC1",
+      "id": 7,
+      "text": "You turn your rig and urge your flock to follow you, scattering towards the Northsea. To your surprise, the rig does not follow you, and instead turns and raises a massive spear towards its pursuers. You hear a resigned sigh as the warrior mutters, 'The luxury of neutrality. Come then, wardens, this Old Knight will not yield to a challenge!' You hear waning sounds of conflict as you put distance between yourself and the Dawnite. ",
+      "choices": [
+        {"text": "What a deranged, old man.", "nextDialogueID": -1},
+        {"text": "You may have been too quick to leave, but it wasn’t your fight anyway.", "nextDialogueID": -1} 
+      ]
+    },
+    {
+      "name": "NPC1",
+      "id": 8,
+      "text": "'The legacy of DRUZHINA is in your debt, I did not wish to harm innocents. I was once Sir Viktor, defending the dreams of the Confederation of the Dawn. But these days, I am but a humble vagabond, and perhaps that is for the best. If we meet again, I will happily aid you in your endeavors. But for now, I must away. Safe travels, Shepherd.'",
+      "choices": [
+        {"text": "A career soldier with experience would be a dangerous person to upset…", "nextDialogueID": -1},
+        {"text": "You’re surprised to hear such convictions in this day and age, but you vaguely recall the Dawnites being synonymous with warmongers…", "nextDialogueID": -1} 
+      ]
     },
     {
       "name": "NPC2",
       "id": 1,
-      "text": "Welcome to our village. Do you seek anything? SAY YES",
+      "text": "Your travels have taken you near the border of the redwoods and the Northsea, but you see sparks of clashing steel in the distance. After a moment, it ceases. Staying well away, you try to observe the combatants but the night makes it difficult. You’re surprised when your monitor connects to the pilot of the DRUZHINA: 'The redwood wardens are bloodthirsty, scared dogs, trying to chase a wounded animal off of their grounds! You, Shepherd, I beseech your aid. Lead me down the path you just came from, or there will be needless bloodshed. Mine… or theirs.'",
       "choices": [
-        {"text": "Tell me about this village.", "nextDialogueID": 2, "value": "townSaltBond", "change": 1},
-        {"text": "I'm just passing through.", "nextDialogueID": -1} 
+        {"text": "They speak with the diction of a Dawnite noble… curiously, you will cooperate to avoid further violence. ", "nextDialogueID": 3},
+        {"text": "Run away, don’t let them drag you into a confrontation. You have too many peoples’ lives in the hands of your flock to compromise for one man.", "nextDialogueID": 2} 
       ]
     },
     {
       "name": "NPC2",
       "id": 2,
-      "text": "This village is known for its ancient ruins.",
-      "choices": []
+      "text": "You turn your rig and urge your flock to follow you, scattering towards the Northsea. To your surprise, the rig does not follow you, and instead turns and raises a massive spear towards its pursuers. You hear a resigned sigh as the warrior mutters, 'The luxury of neutrality. Come then, wardens, this Old Knight will not yield to a challenge!' You hear waning sounds of conflict as you put distance between yourself and the Dawnite. ",
+      "choices": [
+        {"text": "What a deranged, old man.", "nextDialogueID": -1},
+        {"text": "You may have been too quick to leave, but it wasn’t your fight anyway.", "nextDialogueID": -1} 
+      ]
+    },
+    {
+      "name": "NPC2",
+      "id": 3,
+      "text": "'The legacy of DRUZHINA is in your debt, I did not wish to harm innocents. I was once Sir Viktor, defending the dreams of the Confederation of the Dawn. But these days, I am but a humble vagabond, and perhaps that is for the best. If we meet again, I will happily aid you in your endeavors. But for now, I must away. Safe travels, Shepherd.'",
+      "choices": [
+        {"text": "A career soldier with experience would be a dangerous person to upset…", "nextDialogueID": -1},
+        {"text": "You’re surprised to hear such convictions in this day and age, but you vaguely recall the Dawnites being synonymous with warmongers… ", "nextDialogueID": -1} 
+      ]
+    },
+    {
+      "name": "NPC2",
+      "id": 4,
+      "text": "Your travel is interrupted when, on a distant bridge, you see a rather large band of highwaymen who seem all too comfortable with the idea of overwhelming and taking down a lone mobile rig. Their leader demands 4 of your beasts as a toll for letting you cross peacefully. ",
+      "choices": [
+        {"text": "In a display of piloting might, scare them off before any real damage is done. ", "nextDialogueID": -1},
+        {"text": "Convince them that peacefully receiving part of the bargain is better than the risk of violence for the full demand.", "nextDialogueID": -1} 
+      ]
+    },
+    {
+      "name": "NPC2",
+      "id": 5,
+      "text": "'Shepherd!' You turn and see a heavily modified rig waving a spear into the air to get your attention. DRUZHINA. 'So we meet again, aha! Oh how the sun shines on our chance encounter, what luck! I must confess my friend, I can find few reasons to continue my current way of life. If you have any insight, I would value it, from one humble servant of the people to another.'",
+      "choices": [
+        {"text": "The Salt Marshes’ town, New Kalhu, has no one to defend it. Its people, unburdened from the Old War, might be open to having a mobile rig to help work the land… or defend it. ", "nextDialogueID": 6},
+        {"text": "Come to the Plant. A Shepherd who knows how to defend themselves, or training future guards of the facility, would ensure this crucible of humanity is safe for future generations. ", "nextDialogueID": 6} 
+      ]
+    },
+    {
+      "name": "NPC2",
+      "id": 6,
+      "text": "'A tempting offer, my friend, yes… long as I have tried to reconcile with my station, I still feel my heart jump at the chance to serve a new master. Perhaps I am nothing more than a weapon… I gave up counting the times that the sun has passed over my life of apathy and survival. Though I resent myself for it, I know that I live to serve. Thank you, my friend. I hope I can serve the cause of good this time.'",
+      "choices": ["nextDialogueID": -1} 
+      ]
     },
     {
       "name": "NPC3",
       "id": 1,
-      "text": "poopy time.",
-      "choices": []
+      "text": "In the distance, you see… a fog? Mist? No… it’s too localized, too close to the ground. Smouldering carcasses of mechanical mules line the path ahead of you, and you hear conflict in the distance. On this route, there’s only one person who could be leading this flock. SUIJIN, Ziwa.",
+      "choices": [
+        {"text": "The danger seems serious, you can’t afford to die here or lose your flock like this. Use the fog to escape, no one would know.", "nextDialogueID": 2},
+        {"text": "You will not abandon her. Enter the mists.", "nextDialogueID": 3} 
+      ]
+    },
+    {
+      "name": "NPC3",
+      "id": 2,
+      "text": "You hesitate even as you command OSIRIS to wave its antenna-staff, turning your flock around. The one person outside the Plant who calls you by your name is in trouble. You rationalize that many people will die without Ziwa’s water. But despite all this, you… can’t. You turn your rig away and urgently escort your flock to safety.",
+      "choices": ["nextDialogueID": -1} 
+      ]
+    },
+    {
+      "name": "NPC3",
+      "id": 3,
+      "text": "Sizzling condensation obscures your camera lens as you enter the mists, which you now realize are superheated vapors. OSIRIS almost trips on a shattered rig in its path, but it’s not SUIJIN. You continue approaching the sounds of fighting, hearing laughter through the speakers of a distant rig…",
+      "choices": ["nextDialogueID": 4} 
+      ]
+    },
+    {
+      "name": "NPC3",
+      "id": 4,
+      "text": "You find a rusted, one-armed rig locked in a battle with SUIJIN. As you line up behind the bandit, you hear Ziwa’s voice. 'You…! Do you know how many people you’ve just murdered? Children, elderly… PEOPLE! I will destroy you…' You witness SUIJIN grab a mule and crush it overhead. As the water inside makes contact with her mechanical joints, it boils off into steam and she vanishes into the mists. 
+",
+      "choices": [
+        {"text": "She’s sacrificing her own mules to keep from overheating, and to fight the numbers advantage of the bandits… ", "nextDialogueID": 5},
+        {"text": "She cares more about punishing the bandits than she does in saving her remaining flock!", "nextDialogueID": 5} 
+      ]
+    },
+    {
+      "name": "NPC3",
+      "id": 5,
+      "text": "Timid, clumsy steps of a mobile rig behind you. You could turn and face your opponent before they realize you’re a threat, or you could help SUIJIN double team the one-armed rig from before. ",
+      "choices": [
+        {"text": "Team up against the one-armed rig, it’s safer and you might finish fast enough to avoid being caught by the other bandit.", "nextDialogueID": 6, "value": ["townFlameBond"], "change": [1]},
+        {"text": "She must have a plan for the one-armed rig. Turn and face your bandit opponent.", "nextDialogueID": 6, "value": ["mechHealth"], "change": [-1]} 
+      ]
+    },
+    {
+      "name": "NPC3",
+      "id": 6,
+      "text": "Rushing forward, you tackle their rig to the ground. The weight of your rig keeps them pinned beneath you, and as you raise your antenna-staff to stab their cockpit, you’re thrown to the side by the other bandit. The two bandits stare you down for a moment, and as they take one step forward, SUIJIN’s curved staff stabs through the spine of the one-armed rig. Sparks, blood, and coolant fly as the one-armed rig falls to its knees.",
+      "choices": ["nextDialogueID": 7} 
+      ]
+    },
+    {
+      "name": "NPC3",
+      "id": 7,
+      "text": "You turn to face your opponent, and realize how inept at piloting they are. Used to helpless targets or ambushes, they must not have a fraction of the operating hours that you do. Smoothly, easily, you maneuver around them and crush their coolant tanks, drastically reducing its lifespan. Before you, SUIJIN has torn the one-armed rig apart and is making their way towards you.",
+      "choices": ["nextDialogueID": 8} 
+      ]
+    },
+    {
+      "name": "NPC3",
+      "id": 8,
+      "text": "The other bandit turns to run, but you thrust your antenna staff at its knee joint, disabling its left leg. As their rig tries crawling away, Ziwa says, almost ponderously, 'You’re pathetic.' She pins it to the ground, and slowly, methodically, begins prying the cockpit hatch off of the bandit rig. You hear screams as the superheated steam of the mists envelop the pilot inside. SUIJIN’s hand reaches inside, and after a quick jerk, retracts its hand. The blood boils away.",
+      "choices": ["nextDialogueID": 9} 
+      ]
+    },
+    {
+      "name": "NPC3",
+      "id": 9,
+      "text": "You both stand in blood, steam, and shrapnel. Slowly, you start leading them out of the mists, into the shade of a nearby tree. You disembark and wait for her to do the same. After it’s clear that she’s not coming out, you wonder how much damage SUIJIN sustained. You climb her rig and put your hand on the cockpit hatch to open it. Now that you’re close, you hear sobbing inside.",
+      "choices": [
+        {"text": "Leave her in peace. Go back to your rig and wait here with her until she’s ready.", "nextDialogueID": 10},
+        {"text": "Open the hatch, talk to her.", "nextDialogueID": 10} 
+      ]
+    },
+    {
+      "name": "NPC3",
+      "id": 10,
+      "text": "It’s not until the late hours of the night that her rig slowly kneels to the ground and she climbs out. She leans against the tree, holding her head in her hands. You don’t know what you’d say or what you’d do, but at least you’re here for her. You stay in your rig, watching over her and what’s left of her flock until the morning comes.",
+      "choices": ["nextDialogueID": 11} 
+      ]
+    },
+    {
+      "name": "NPC3",
+      "id": 11,
+      "text": "You open the hatch to find her curled up, her nails digging into her arms. You tentatively wrap an arm around her and speak softly, trying to give her room to say as much or as little as she needs. Neither of you sleeps well tonight.",
+      "choices": ["nextDialogueID": -1} 
+      ]
+    },
+    {
+      "name": "NPC3",
+      "id": 12,
+      "text": "As you’re leaving the Plant to enter the valley proper, you’re barely a day’s travel in when you find a conspicuous tent propped up on the side of the road. Glowing eyes peer at you beneath the black curtains, and your screen is connected to the pilot inside. PROMETHEUS, the Drifter runaway. 'The Shepherd! I… was hoping to have someone to talk to. I’m struggling to organize my thoughts… Ask me anything.'",
+      "choices": [
+        {"text": "Why did you run away from the Veil?", "nextDialogueID": 13},
+        {"text": "You mentioned a betrayal… What did the Drifters do?", "nextDialogueID": 14} 
+      ]
+    },
+    {
+      "name": "NPC3",
+      "id": 13,
+      "text": "'It’s… suffocating. So many rules, ‘don’t expose your skin to the UV, you’ll damage your DNA…’ ‘Let the speaker do the talking to outsiders…’ As we passed by a village in the Salt Marshes, I snuck out at night and ran into the boy who gave me this scarf. Speaking with him, seeing his love for his community and the… lost education of generations, I… Well, I wanted to see for myself if they really were unworthy of reacquiring the ancient technologies that left Elysium as a smoking husk. Technologies that the Veil thinks they can use to save the world.'",
+      "choices": [
+        {"text": "You wonder if any of that technology is as important as the desalination plant. If it really was, then why wait to use it?", "nextDialogueID": 15},
+        {"text": "You doubt that this path ends well. You hope, for their sake, that it does.", "nextDialogueID": 15} 
+      ]
+    },
+    {
+      "name": "NPC3",
+      "id": 14,
+      "text": "'My clan wants to abandon Elysium to its fate. We discovered rumors of a mountaintop facility that once connected us to our sky cities and space stations! Those drifting metal hulks might have people still inside… do you think they’ve spent the past three centuries looking down on our wars and destruction of the land? Or have they forgotten that we’re even here? I’d like to know, but if all my people leave, then… maybe my staying behind can prepare the next group to follow. I don’t know.'",
+      "choices": [
+        {"text": "You’d take the first opportunity you had to stay away from this mess, too. ", "nextDialogueID": 15},
+        {"text": "If there’s anyone left up there, they must be too busy keeping themselves alive, or things would be different down here.", "nextDialogueID": 15} 
+      ]
+    },
+    {
+      "name": "NPC3",
+      "id": 15,
+      "text": "After your discussion, he starts packing up his tent. He seems sure that you will meet again someday, though you hope it will be with actionable information next time. ",
+      "choices": ["nextDialogueID": -1} 
+      ]
+    },
+    {
+      "name": "NPC3",
+      "id": 16,
+      "text": "'Shepherd!' You turn and see a heavily modified rig waving a spear into the air to get your attention. DRUZHINA. 'So we meet again, aha! Oh how the sun shines on our chance encounter, what luck! I must confess my friend, I can find few reasons to continue my current way of life. If you have any insight, I would value it, from one humble servant of the people to another.'",
+      "choices": [
+        {"text": "The Salt Marshes’ town, New Kalhu, has no one to defend it. Its people, unburdened from the Old War, might be open to having a mobile rig to help work the land… or defend it. ", "nextDialogueID": 17},
+        {"text": "Come to the Plant. A Shepherd who knows how to defend themselves, or training future guards of the facility, would ensure this crucible of humanity is safe for future generations. ", "nextDialogueID": 17} 
+      ]
+    },
+    {
+      "name": "NPC3",
+      "id": 17,
+      "text": "'A tempting offer, my friend, yes… long as I have tried to reconcile with my station, I still feel my heart jump at the chance to serve a new master. Perhaps I am nothing more than a weapon… I gave up counting the times that the sun has passed over my life of apathy and survival. Though I resent myself for it, I know that I live to serve. Thank you, my friend. I hope I can serve the cause of good this time.'",
+      "choices": ["nextDialogueID": -1} 
+      ]
     }
   ]
 }
