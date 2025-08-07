@@ -30,7 +30,7 @@ public class MainMenu : MonoBehaviour
     {
         yield return StartCoroutine(fadeScript.FadeToBlack());
         textCanvas.SetActive(true);
-        infoText.text = "INtro Text";
+        infoText.text = "It’s been 400 years since galactic society abandoned this solar system. The worsening solar flares have blasted apart the ozone and atmosphere of its dependent planets. The once-green fields of Elysium have been slowly dying, holes punched through the atmosphere see the ejection of gases and material from the surface of the planet. The remaining humans on this planet have had to rebuild themselves after waves of ecological disasters and technological apocalypses. Every day, it feels like the collective breaths of everyone on Elysium is being slowly sucked away…";
         readyToStart = true;
         
     }
