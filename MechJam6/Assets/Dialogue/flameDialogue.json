@@ -15,7 +15,10 @@
       "name": "NPC1",
       "id": 1,
       "text": "Greetings, traveler!",
-      "choices": []
+      "choices": [
+        {"text": "Tell me about this village.", "nextDialogueID": 2, "value": "waterAmount", "change": -200},
+        {"text": "I'm just passing through.", "nextDialogueID": -1} 
+      ]
     },
     {
       "name": "NPC2",

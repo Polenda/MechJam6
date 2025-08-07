@@ -27,10 +27,14 @@ public class TownObjectScript : MonoBehaviour
             if (hit.collider != null && hit.collider.gameObject == gameObject)
             {
                 clicked = true;
-                // if (clicked && !temp) {
-                //     temp = true;
+                if (temp)
+                {
+                    Debug.Log("fake town clicked");
+                }
+                else
+                {
                     townManagerScript.townClicked();
-                // }
+                }
             }
         }
     }

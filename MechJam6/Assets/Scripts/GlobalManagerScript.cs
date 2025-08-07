@@ -5,8 +5,8 @@ public class GlobalManagerScript : MonoBehaviour
 {
     [Header("Player Stats")]
     public int mechHealth = 4;
-    public int waterAmount = 0;
-    public int maxWaterAmount = 80;
+    public int waterAmount = 100;
+    public int maxWaterAmount = 100;
 
     [Header("Player Bonds")]
     public int townDriftBond = 0;
@@ -15,7 +15,12 @@ public class GlobalManagerScript : MonoBehaviour
 
     [Header("Player Story Progression")]
     public int week = 1;
+    public int saltStory = 0;
+    public int flameStory = 0;
+    public int driftStory = 0;
     public int npc1Story = 0;
+    public int npc2Story = 0;
+    public int npc3Story = 0;
 
     [Header("UI Elements")]
     [SerializeField] private TextMeshProUGUI weekText;
@@ -25,14 +30,14 @@ public class GlobalManagerScript : MonoBehaviour
     {
         weekText.text = "Week: " + week;
         mechHealthText.text = "Health: " + mechHealth;
-        waterAmountText.text = "Water: " + waterAmount + "/" + maxWaterAmount;
+        waterAmountText.text = "Water: " + waterAmount;
     }
 
     public void Refresh()
     {
         weekText.text = "Week: " + week;
         mechHealthText.text = "Health: " + mechHealth;
-        waterAmountText.text = "Water: " + waterAmount + "/" + maxWaterAmount;
+        waterAmountText.text = "Water: " + waterAmount;
     }
 
 

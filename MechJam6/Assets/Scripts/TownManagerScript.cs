@@ -12,12 +12,12 @@ public class TownManagerScript : MonoBehaviour
     private InputAction clickAction;
     private bool pass = false;
 
-    [SerializeField] private fadeToBlackScript fadeScript;
+    public fadeToBlackScript fadeScript;
 
     [Header("Location Settings")]
     public SpriteRenderer currentScene;
-    [SerializeField] private TextMeshProUGUI infoText;
-    [SerializeField] private GameObject textCanvas;
+    public TextMeshProUGUI infoText;
+    public GameObject textCanvas;
     public GameObject townObjectParent;
     private int randomLocation = 1;
 
@@ -30,6 +30,9 @@ public class TownManagerScript : MonoBehaviour
 
     private int chosenTown;
     public TownDialogueScript townDialogueScript;
+
+    [SerializeField] private AudioClip encounterClip;
+    [SerializeField] private AudioClip townClip;
 
     void Start()
     {
@@ -48,7 +51,30 @@ public class TownManagerScript : MonoBehaviour
             townDialogueScript.NPCSpriteRenderer.enabled = true;
             townDialogueScript.NPCDialoguePanel.SetActive(true);
 
-            StartCoroutine(fadeScript.FadeToClear());
+            Debug.Log("Encounter NPC dialogue started for town: " + chosenTown);
+            StartCoroutine(clearFade()); 
+        }
+    }
+
+    public void updateTowns()
+    {
+        foreach (var obj in townObjectScript)
+        {
+            obj.temp = false;
+        }
+    }
+
+    IEnumerator clearFade()
+    {
+        yield return StartCoroutine(fadeScript.FadeToClear());
+        Debug.Log("Fade to clear completed.");
+        if (townDialogueScript.currentDialogueFileFileName == "encounterDialogue")
+        {
+            townDialogueScript.pass = true;
+        }
+        else
+        {
+            townDialogueScript.end = true;
         }
     }
 
@@ -59,10 +85,10 @@ public class TownManagerScript : MonoBehaviour
         for (int i = 0; i < townObjectScript.Length; i++)
         {
             var obj = townObjectScript[i];
-            if (obj.clicked)
+            if (obj.clicked && !obj.temp)
             {
                 obj.clicked = false;
-                obj.temp = false;
+                obj.temp = true;
 
                 townObjectParent.SetActive(false);
                 chosenTown = i;
@@ -70,45 +96,47 @@ public class TownManagerScript : MonoBehaviour
                 break;
             }
         }
-        
+
     }
 
-    private void encounter()
+    public void encounter()
     {
-        if (randomLocation == 4)
+        fadeScript.audioSource.Stop();
+        fadeScript.audioSource.clip = townClip;
+        fadeScript.audioSource.Play();
+        textCanvas.SetActive(true);
+        infoText.text = "You make it to the town.";
+        pass = true;
+        townDialogueScript.NPCSpriteRenderer.enabled = true;
+        Debug.Log("chosen town: " + chosenTown);
+        if (chosenTown == 0)
         {
-            infoText.text = "You have encountered a wild creature!";
-            townDialogueScript.encounterNPCDialogue();
+            return;
         }
-        else
+        else if (chosenTown == 1)
         {
-            infoText.text = "You make it to the town.";
-            townDialogueScript.NPCSpriteRenderer.enabled = true;
-            if (chosenTown == 0)
-            {
-                townDialogueScript.homeNPCDialogue();
-            }
-            else if (chosenTown == 1)
-            {
-                townDialogueScript.saltNPCDialogue();
-            }
-            else if (chosenTown == 2)
-            {
-                townDialogueScript.flameNPCDialogue();
-            }
-            else if (chosenTown == 3)
-            {
-                townDialogueScript.driftNPCDialogue();
-            }
+            townDialogueScript.saltNPCDialogue();
+        }
+        else if (chosenTown == 2)
+        {
+            townDialogueScript.flameNPCDialogue();
+        }
+        else if (chosenTown == 3)
+        {
+            townDialogueScript.driftNPCDialogue();
         }
     }
 
     IEnumerator foundTown()
     {
         yield return StartCoroutine(fadeScript.FadeToBlack());
+        fadeScript.audioSource.Stop();
+        fadeScript.audioSource.clip = encounterClip;
+        fadeScript.audioSource.Play();
         pass = true;
         textCanvas.SetActive(true);
-        encounter();
+        infoText.text = "You have encountered something!";
+        townDialogueScript.encounterNPCDialogue(chosenTown + 2);
     }
     
 }

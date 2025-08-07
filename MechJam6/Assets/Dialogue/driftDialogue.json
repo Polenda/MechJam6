@@ -15,7 +15,7 @@
       "name": "NPC1",
       "id": 1,
       "text": "Greetings, traveler!",
-      "choices": []
+      "choices": [{ "nextDialogueID": -1 }]
     },
     {
       "name": "NPC2",

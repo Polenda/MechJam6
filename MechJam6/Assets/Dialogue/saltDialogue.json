@@ -15,7 +15,22 @@
       "name": "NPC1",
       "id": 1,
       "text": "Greetings, traveler!",
-      "choices": []
+      "choices": [{ "nextDialogueID": 2 }]
+    },
+    {
+      "name": "NPC1",
+      "id": 2,
+      "text": "I have seen many wanderers like you. What brings you here?",
+      "choices": [
+        {"text": "I'm looking for adventure.", "nextDialogueID": 3, "value": "townDriftBond", "change": 1},
+        {"text": "Just passing through.", "nextDialogueID": -1}
+      ]
+    },
+    {
+      "name": "NPC1",
+      "id": 3,
+      "text": "Adventure awaits! The mountains to the north are perilous but rewarding.",
+      "choices": [{ "nextDialogueID": -1}]
     },
     {
       "name": "NPC2",

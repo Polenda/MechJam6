@@ -20,7 +20,7 @@
     {
       "name": "NPC2",
       "id": 1,
-      "text": "Welcome to our village. Do you seek anything?",
+      "text": "Welcome to our village. Do you seek anything? SAY YES",
       "choices": [
         {"text": "Tell me about this village.", "nextDialogueID": 2, "value": "townSaltBond", "change": 1},
         {"text": "I'm just passing through.", "nextDialogueID": -1} 
@@ -30,6 +30,12 @@
       "name": "NPC2",
       "id": 2,
       "text": "This village is known for its ancient ruins.",
+      "choices": []
+    },
+    {
+      "name": "NPC3",
+      "id": 1,
+      "text": "poopy time.",
       "choices": []
     }
   ]

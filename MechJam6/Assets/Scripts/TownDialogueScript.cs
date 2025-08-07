@@ -2,10 +2,19 @@ using System.IO;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Collections;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class TownDialogueScript : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] private GlobalManagerScript globalManagerScript;
+    [SerializeField] private TownManagerScript TownScript;
+    [SerializeField] private Button travelButton;
+    [SerializeField] private Button homeButton;
+
+    [Header("Dialogue Settings")]
     [SerializeField] private Sprite[] NPCsprites;
     public SpriteRenderer NPCSpriteRenderer;
     public TextMeshProUGUI NPCDialogueText;
@@ -15,8 +24,20 @@ public class TownDialogueScript : MonoBehaviour
     public Button ChoiceLeftButton;
     public Button ChoiceRightButton;
 
+    [Header("Dialogue File Settings")]
     private DialogueFile currentDialogueFile;
     private DialogueEntry currentEntry;
+    private int dialogueID;
+    public string currentDialogueFileFileName;
+    private string npcName;
+    private int currentNPC;
+
+    [Header("Click Settings")]
+    [SerializeField] private InputActionAsset InputActions;
+    private InputAction clickAction;
+    public bool pass = false;
+    public bool end = false;
+    public ClosingScript closingScript;
 
     [System.Serializable]
     public class DialogueChoice
@@ -44,6 +65,8 @@ public class TownDialogueScript : MonoBehaviour
 
     void Start()
     {
+        InputActions = TownScript.InputActions;
+        clickAction = InputActions.FindAction("Click");
         NPCDialoguePanel.SetActive(false);
         NPCSpriteRenderer.enabled = false;
     }
@@ -51,6 +74,7 @@ public class TownDialogueScript : MonoBehaviour
     // Loads a dialogue file from Resources/Dialogue/filename.json
     private void LoadDialogueFile(string filename)
     {
+        currentDialogueFileFileName = filename;
         string path = Path.Combine(Application.dataPath, "Dialogue", filename + ".json");
         if (File.Exists(path))
         {
@@ -65,9 +89,22 @@ public class TownDialogueScript : MonoBehaviour
 
     private void ShowDialogue(int id)
     {
-        NPCDialoguePanel.SetActive(true);
         if (currentDialogueFile == null) return;
-        currentEntry = System.Array.Find(currentDialogueFile.dialogues, d => d.id == id);
+
+        if (currentDialogueFileFileName == "encounterDialogue")
+        {
+            currentEntry = System.Array.Find(
+                currentDialogueFile.dialogues,
+                d => d.id == id && d.name == npcName
+            );
+        }
+        else
+        {
+            currentEntry = System.Array.Find(currentDialogueFile.dialogues, d => d.id == id);
+        }
+
+        dialogueID = id;
+
         if (currentEntry == null)
         {
             EndDialogue();
@@ -78,17 +115,39 @@ public class TownDialogueScript : MonoBehaviour
 
         if (currentEntry.choices != null)
         {
-            ChoiceLeftText.text = currentEntry.choices[0].text;
-            ChoiceRightText.text = currentEntry.choices[1].text;
+            if (currentEntry.choices.Length == 2)
+            {
+                ChoiceLeftText.text = currentEntry.choices[0].text;
+                ChoiceRightText.text = currentEntry.choices[1].text;
 
-            ChoiceLeftButton.onClick.RemoveAllListeners();
-            ChoiceRightButton.onClick.RemoveAllListeners();
+                ChoiceLeftButton.onClick.RemoveAllListeners();
+                ChoiceRightButton.onClick.RemoveAllListeners();
 
-            ChoiceLeftButton.onClick.AddListener(() => OnChoiceSelected(0));
-            ChoiceRightButton.onClick.AddListener(() => OnChoiceSelected(1));
+                ChoiceLeftButton.onClick.AddListener(() => OnChoiceSelected(0));
+                ChoiceRightButton.onClick.AddListener(() => OnChoiceSelected(1));
 
-            ChoiceLeftButton.interactable = true;
-            ChoiceRightButton.interactable = true;
+                ChoiceLeftButton.interactable = true;
+                ChoiceRightButton.interactable = true;
+                if (currentEntry.choices[0].value == "waterAmount")
+                {
+                    if ((globalManagerScript.waterAmount * -1) > currentEntry.choices[0].change)
+                    {
+                        ChoiceLeftButton.interactable = false;
+                    }
+                }
+                else if (currentEntry.choices[1].value == "waterAmount")
+                {
+                    if ((globalManagerScript.waterAmount * -1) > currentEntry.choices[1].change)
+                    {
+                        ChoiceRightButton.interactable = false;
+                    }
+                }
+            }
+            else
+            {
+                ChoiceLeftButton.interactable = false;
+                ChoiceRightButton.interactable = false;
+            }
         }
         else
         {
@@ -106,12 +165,29 @@ public class TownDialogueScript : MonoBehaviour
         }
         if (choice.nextDialogueID == -1)
         {
-            EndDialogue();
+            switch (currentNPC)
+            {
+                case 1: EndDialogue(); break;
+                case 2: EndDialogue(); break;
+                case 3: EndDialogue(); break;
+                case 4: NewDialogue(); break;
+                case 5: NewDialogue(); break;
+                case 6: NewDialogue(); break;
+            }
         }
         else
         {
             ShowDialogue(choice.nextDialogueID);
+            StartCoroutine(timer());
+
         }
+
+        if (globalManagerScript.mechHealth <= 0)
+        {
+            EndGameScript.Instance.myBool = 2;
+            closingScript.ClosingGame();
+        }
+
     }
 
     private void ApplyVariableChange(string variable, int change)
@@ -124,50 +200,127 @@ public class TownDialogueScript : MonoBehaviour
             case "townDriftBond": globalManagerScript.townDriftBond += change; break;
             case "townFlameBond": globalManagerScript.townFlameBond += change; break;
             case "townSaltBond": globalManagerScript.townSaltBond += change; break;
-            case "npc1Story": globalManagerScript.npc1Story += change; break;
         }
         globalManagerScript.Refresh();
     }
 
     private void EndDialogue()
     {
+        ChoiceLeftButton.interactable = false;
+        ChoiceRightButton.interactable = false;
+        homeButton.interactable = true;
+        travelButton.interactable = true;
+        switch (currentNPC)
+        {
+            case 1: globalManagerScript.saltStory += dialogueID; break;
+            case 2: globalManagerScript.flameStory += dialogueID; break;
+            case 3: globalManagerScript.driftStory += dialogueID; break;
+        }
+            
+    }
+    private void NewDialogue()
+    {
         NPCDialogueText.text = "";
         ChoiceLeftButton.interactable = false;
         ChoiceRightButton.interactable = false;
+        switch (currentNPC)
+        {
+            case 4: globalManagerScript.npc1Story += dialogueID; break;
+            case 5: globalManagerScript.npc2Story += dialogueID; break;
+            case 6: globalManagerScript.npc3Story += dialogueID; break;
+        }
+            
+        StartCoroutine(continueDialogue());
+    }
+    IEnumerator continueDialogue()
+    {
+        yield return StartCoroutine(TownScript.fadeScript.FadeToBlack());
+        TownScript.encounter();
+    }
+
+    void Update()
+    {
+        // Encounter dialogue: use pass
+        if (clickAction.triggered && pass)
+        {
+            pass = false; // Prevent multiple triggers
+            NewDialogue();
+            Debug.Log("Encounter dialogue click handled.");
+        }
+        // Single choice case: use end
+        else if (clickAction.triggered && end)
+        {
+            end = false; // Prevent multiple triggers
+            if (currentEntry != null && currentEntry.choices != null && currentEntry.choices.Length == 1)
+            {
+                var choice = currentEntry.choices[0];
+                if (choice.nextDialogueID == -1)
+                {
+                    EndDialogue();
+                    Debug.Log("Single choice dialogue ended.");
+                }
+                else
+                {
+                    ShowDialogue(choice.nextDialogueID);
+                    Debug.Log("Single choice advanced to next dialogue ID: " + choice.nextDialogueID);
+                    StartCoroutine(timer());
+                }
+            }
+        }
+        if (end && currentEntry.choices.Length == 1 && currentEntry.choices[0].nextDialogueID == -1)
+        {
+            end = false; // Reset end to false after handling single choice
+            EndDialogue();
+        }
+    }
+
+    IEnumerator timer()
+    {
+        yield return new WaitForSeconds(0.2f);
+        Debug.Log("Timer completed, setting end to true.");
+        end = true; // Set end to true after 0.1 seconds
     }
 
     // --- DIALOGUE ENTRY POINTS ---
 
     public void saltNPCDialogue()
     {
+        currentNPC = 1;
         NPCSpriteRenderer.sprite = NPCsprites[0];
         LoadDialogueFile("saltDialogue"); // saltDialogue.json
-        ShowDialogue(1);
+        ShowDialogue(globalManagerScript.saltStory + 1);
     }
     public void flameNPCDialogue()
     {
-        NPCSpriteRenderer.sprite = NPCsprites[1];
+        currentNPC = 2;
+        NPCSpriteRenderer.sprite = NPCsprites[2];
         LoadDialogueFile("flameDialogue"); // flameDialogue.json
-        ShowDialogue(1);
+        ShowDialogue(globalManagerScript.flameStory + 1);
     }
     public void driftNPCDialogue()
     {
-        NPCSpriteRenderer.sprite = NPCsprites[2];
+        currentNPC = 3;
+        NPCSpriteRenderer.sprite = NPCsprites[1];
         LoadDialogueFile("driftDialogue"); // driftDialogue.json
-        ShowDialogue(1);
+        ShowDialogue(globalManagerScript.driftStory + 1);
     }
-    public void homeNPCDialogue()
+    public void encounterNPCDialogue(int num)
     {
-        LoadDialogueFile("homeDialogue"); // homeDialogue.json
-        ShowDialogue(1);
-    }
-    public void encounterNPCDialogue()
-    {
-        int num = Random.Range(3, 6);
+        end = false;
+        currentNPC = num+1;
+        homeButton.interactable = false;
+        travelButton.interactable = false;
+
+        npcName = "NPC" + (num - 2);
         NPCSpriteRenderer.sprite = NPCsprites[num];
         LoadDialogueFile("encounterDialogue"); // encounterDialogue.json
-        ShowDialogue(1);
+        Debug.Log("Loading encounter dialogue for NPC: " + npcName);
+        switch (num)
+        {
+            case 3: ShowDialogue(globalManagerScript.npc1Story + 1); break;
+            case 4: ShowDialogue(globalManagerScript.npc2Story + 1); break;
+            case 5: ShowDialogue(globalManagerScript.npc3Story + 1); break;
+            default: Debug.LogError("Invalid NPC number for encounter dialogue: " + num); break;
+        }
     }
 }
-
-
