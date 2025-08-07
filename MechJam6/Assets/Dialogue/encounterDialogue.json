@@ -51,34 +51,7 @@
       "name": "NPC1",
       "id": 5,
       "text": "As you’re turning away, your audio warning light flashes. Searching your monitor, you realize a fight’s broken out in the water line—do you intervene?",
-      "choices": [{"text": "Walk your rig to the center of the conflict, physically separating the belligerents and casting them in the shadow of your 20 tons of steel.", "nextDialogueID": 6} 
-      ]
-    },
-    {
-      "name": "NPC1",
-      "id": 6,
-      "text": "Your travels have taken you near the border of the redwoods and the Northsea, but you see sparks of clashing steel in the distance. After a moment, it ceases. Staying well away, you try to observe the combatants but the night makes it difficult. You’re surprised when your monitor connects to the pilot of the DRUZHINA: 'The redwood wardens are bloodthirsty, scared dogs, trying to chase a wounded animal off of their grounds! You, Shepherd, I beseech your aid. Lead me down the path you just came from, or there will be needless bloodshed. Mine… or theirs.'",
-      "choices": [
-        {"text": "They speak with the diction of a Dawnite noble… curiously, you will cooperate to avoid further violence. ", "nextDialogueID": 8},
-        {"text": "Run away, don’t let them drag you into a confrontation. You have too many peoples’ lives in the hands of your flock to compromise for one man.", "nextDialogueID": 7} 
-      ]
-    },
-    {
-      "name": "NPC1",
-      "id": 7,
-      "text": "You turn your rig and urge your flock to follow you, scattering towards the Northsea. To your surprise, the rig does not follow you, and instead turns and raises a massive spear towards its pursuers. You hear a resigned sigh as the warrior mutters, 'The luxury of neutrality. Come then, wardens, this Old Knight will not yield to a challenge!' You hear waning sounds of conflict as you put distance between yourself and the Dawnite. ",
-      "choices": [
-        {"text": "What a deranged, old man.", "nextDialogueID": -1},
-        {"text": "You may have been too quick to leave, but it wasn’t your fight anyway.", "nextDialogueID": -1} 
-      ]
-    },
-    {
-      "name": "NPC1",
-      "id": 8,
-      "text": "'The legacy of DRUZHINA is in your debt, I did not wish to harm innocents. I was once Sir Viktor, defending the dreams of the Confederation of the Dawn. But these days, I am but a humble vagabond, and perhaps that is for the best. If we meet again, I will happily aid you in your endeavors. But for now, I must away. Safe travels, Shepherd.'",
-      "choices": [
-        {"text": "A career soldier with experience would be a dangerous person to upset…", "nextDialogueID": -1},
-        {"text": "You’re surprised to hear such convictions in this day and age, but you vaguely recall the Dawnites being synonymous with warmongers…", "nextDialogueID": -1} 
+      "choices": [{"text": "Walk your rig to the center of the conflict, physically separating the belligerents and casting them in the shadow of your 20 tons of steel.", "nextDialogueID": -1} 
       ]
     },
     {
