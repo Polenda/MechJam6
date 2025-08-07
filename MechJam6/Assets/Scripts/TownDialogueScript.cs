@@ -32,6 +32,8 @@ public class TownDialogueScript : MonoBehaviour
     private string npcName;
     private int currentNPC;
 
+    private string currentWeekName;
+
     [Header("Click Settings")]
     [SerializeField] private InputActionAsset InputActions;
     private InputAction clickAction;
@@ -88,20 +90,22 @@ public class TownDialogueScript : MonoBehaviour
         }
     }
 
-    private void ShowDialogue(int id)
+    private void ShowDialogue(int id, string name = null)
     {
         if (currentDialogueFile == null) return;
 
-        if (currentDialogueFileFileName == "encounterDialogue")
+        if (name != null)
         {
-            currentEntry = System.Array.Find(
-                currentDialogueFile.dialogues,
-                d => d.id == id && d.name == npcName
-            );
+            currentEntry = System.Array.Find(currentDialogueFile.dialogues, d => d.id == id && d.name == name);
+        }
+        else if (currentDialogueFileFileName == "encounterDialogue")
+        {
+            currentEntry = System.Array.Find(currentDialogueFile.dialogues, d => d.id == id && d.name == npcName);
         }
         else
         {
             currentEntry = System.Array.Find(currentDialogueFile.dialogues, d => d.id == id);
+            Debug.Log("NO NAME WAS FOUND TENICALLY");
         }
 
         dialogueID = id;
@@ -114,7 +118,7 @@ public class TownDialogueScript : MonoBehaviour
 
         NPCDialogueText.text = currentEntry.text;
 
-        Debug.Log($"ShowDialogue: Looking for id={id}, name={npcName}. Found entry: {(currentEntry != null ? currentEntry.text : "null")}");
+        Debug.Log($"ShowDialogue: Looking for id={id}, name={currentEntry.name}. Found entry: {(currentEntry != null ? currentEntry.text : "null")}");
 
         if (currentEntry.choices != null)
         {
@@ -195,10 +199,11 @@ public class TownDialogueScript : MonoBehaviour
         }
         else
         {
-            ShowDialogue(choice.nextDialogueID);
-            // temp = false;
-            // StartCoroutine(timer(temp));
-
+            // Use week name for salt/flame/drift dialogues
+            if (currentNPC == 1 || currentNPC == 2 || currentNPC == 3)
+                ShowDialogue(choice.nextDialogueID, currentWeekName);
+            else
+                ShowDialogue(choice.nextDialogueID);
         }
 
         if (globalManagerScript.mechHealth <= 0)
@@ -337,40 +342,111 @@ public class TownDialogueScript : MonoBehaviour
     {
         currentNPC = 1;
         NPCSpriteRenderer.sprite = NPCsprites[0];
-        LoadDialogueFile("saltDialogue"); // saltDialogue.json
-        ShowDialogue(globalManagerScript.saltStory + 1);
+        LoadDialogueFile("saltDialogue");
+
+        string weekName = "Week" + globalManagerScript.week;
+        DialogueEntry firstEntry = System.Array.Find(
+            currentDialogueFile.dialogues,
+            d => d.name == weekName
+        );
+
+        if (firstEntry != null)
+        {
+            currentEntry = firstEntry;
+            dialogueID = firstEntry.id;
+            currentWeekName = weekName;
+            ShowDialogue(dialogueID, currentWeekName);
+        }
+        else
+        {
+            Debug.LogError("No salt dialogue found for week: " + globalManagerScript.week);
+            EndDialogue();
+        }
     }
+
     public void flameNPCDialogue()
     {
         currentNPC = 2;
         NPCSpriteRenderer.sprite = NPCsprites[1];
         LoadDialogueFile("flameDialogue"); // flameDialogue.json
-        ShowDialogue(globalManagerScript.flameStory + 1);
+
+        string weekName = "Week" + globalManagerScript.week;
+        DialogueEntry firstEntry = System.Array.Find(
+            currentDialogueFile.dialogues,
+            d => d.name == weekName
+        );
+
+        if (firstEntry != null)
+        {
+            currentEntry = firstEntry;
+            dialogueID = firstEntry.id;
+            currentWeekName = weekName;
+            ShowDialogue(dialogueID, currentWeekName);
+        }
+        else
+        {
+            Debug.LogError("No flame dialogue found for week: " + globalManagerScript.week);
+            EndDialogue();
+        }
     }
+
     public void driftNPCDialogue()
     {
         currentNPC = 3;
         NPCSpriteRenderer.sprite = NPCsprites[2];
         LoadDialogueFile("driftDialogue"); // driftDialogue.json
-        ShowDialogue(globalManagerScript.driftStory + 1);
+
+        string weekName = "Week" + globalManagerScript.week;
+        DialogueEntry firstEntry = System.Array.Find(
+            currentDialogueFile.dialogues,
+            d => d.name == weekName
+        );
+
+        if (firstEntry != null)
+        {
+            currentEntry = firstEntry;
+            dialogueID = firstEntry.id;
+            currentWeekName = weekName;
+            ShowDialogue(dialogueID, currentWeekName);
+        }
+        else
+        {
+            Debug.LogError("No drift dialogue found for week: " + globalManagerScript.week);
+            EndDialogue();
+        }
     }
+
     public void encounterNPCDialogue(int num)
     {
         end = false;
-        currentNPC = num+1;
+        currentNPC = num + 1;
         homeButton.interactable = false;
         travelButton.interactable = false;
 
         npcName = "NPC" + (num - 2);
         NPCSpriteRenderer.sprite = NPCsprites[num];
         LoadDialogueFile("encounterDialogue"); // encounterDialogue.json
-        Debug.Log("Loading encounter dialogue for NPC: " + npcName + " with ID: " + num);
+
+        // Predetermined lists of starting IDs for each NPC encounter
+        int[] npc1Ids = { 1, 2, 5 }; // Example: week 1 = id 1, week 2 = id 4, week 3 = id 7
+        int[] npc2Ids = { 1, 4, 5 };
+        int[] npc3Ids = { 1, 12, 16 };
+
+        int weekIndex = Mathf.Clamp(globalManagerScript.week - 1, 0, 2); // Ensure index is valid
+
+        int startId = -1;
         switch (num)
         {
-            case 3: ShowDialogue(globalManagerScript.npc1Story + 1); break;
-            case 4: ShowDialogue(globalManagerScript.npc2Story + 1); break;
-            case 5: ShowDialogue(globalManagerScript.npc3Story + 1); break;
-            default: Debug.LogError("Invalid NPC number for encounter dialogue: " + num); break;
+            case 3: startId = npc1Ids[weekIndex]; break;
+            case 4: startId = npc2Ids[weekIndex]; break;
+            case 5: startId = npc3Ids[weekIndex]; break;
+            default:
+                Debug.LogError("Invalid NPC number for encounter dialogue: " + num);
+                EndDialogue();
+                return;
         }
+
+        Debug.Log($"Loading encounter dialogue for NPC: {npcName} with start ID: {startId} (week {globalManagerScript.week})");
+        ShowDialogue(startId);
     }
 }
