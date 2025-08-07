@@ -37,6 +37,7 @@ public class TownDialogueScript : MonoBehaviour
     private InputAction clickAction;
     public bool pass = false;
     public bool end = false;
+    private bool temp;
     public ClosingScript closingScript;
 
     [System.Serializable]
@@ -44,8 +45,8 @@ public class TownDialogueScript : MonoBehaviour
     {
         public string text;
         public int nextDialogueID;
-        public string value;
-        public int change;
+        public string[] value; // Array of variable names
+        public int[] change;   // Array of changes
     }
 
     [System.Serializable]
@@ -113,6 +114,8 @@ public class TownDialogueScript : MonoBehaviour
 
         NPCDialogueText.text = currentEntry.text;
 
+        Debug.Log($"ShowDialogue: Looking for id={id}, name={npcName}. Found entry: {(currentEntry != null ? currentEntry.text : "null")}");
+
         if (currentEntry.choices != null)
         {
             if (currentEntry.choices.Length == 2)
@@ -128,18 +131,33 @@ public class TownDialogueScript : MonoBehaviour
 
                 ChoiceLeftButton.interactable = true;
                 ChoiceRightButton.interactable = true;
-                if (currentEntry.choices[0].value == "waterAmount")
+
+                // Check all values for left choice
+                if (currentEntry.choices[0].value != null && currentEntry.choices[0].change != null)
                 {
-                    if ((globalManagerScript.waterAmount * -1) > currentEntry.choices[0].change)
+                    for (int i = 0; i < currentEntry.choices[0].value.Length; i++)
                     {
-                        ChoiceLeftButton.interactable = false;
+                        if (currentEntry.choices[0].value[i] == "waterAmount")
+                        {
+                            if ((globalManagerScript.waterAmount * -1) > currentEntry.choices[0].change[i])
+                            {
+                                ChoiceLeftButton.interactable = false;
+                            }
+                        }
                     }
                 }
-                else if (currentEntry.choices[1].value == "waterAmount")
+                // Check all values for right choice
+                if (currentEntry.choices[1].value != null && currentEntry.choices[1].change != null)
                 {
-                    if ((globalManagerScript.waterAmount * -1) > currentEntry.choices[1].change)
+                    for (int i = 0; i < currentEntry.choices[1].value.Length; i++)
                     {
-                        ChoiceRightButton.interactable = false;
+                        if (currentEntry.choices[1].value[i] == "waterAmount")
+                        {
+                            if ((globalManagerScript.waterAmount * -1) > currentEntry.choices[1].change[i])
+                            {
+                                ChoiceRightButton.interactable = false;
+                            }
+                        }
                     }
                 }
             }
@@ -159,7 +177,7 @@ public class TownDialogueScript : MonoBehaviour
     private void OnChoiceSelected(int index)
     {
         var choice = currentEntry.choices[index];
-        if (!string.IsNullOrEmpty(choice.value))
+        if (choice.value != null && choice.change != null)
         {
             ApplyVariableChange(choice.value, choice.change);
         }
@@ -178,7 +196,8 @@ public class TownDialogueScript : MonoBehaviour
         else
         {
             ShowDialogue(choice.nextDialogueID);
-            StartCoroutine(timer());
+            // temp = false;
+            // StartCoroutine(timer(temp));
 
         }
 
@@ -188,19 +207,28 @@ public class TownDialogueScript : MonoBehaviour
             closingScript.ClosingGame();
         }
 
+        Debug.Log($"OnChoiceSelected: {choice.text}, value: {(choice.value != null ? string.Join(",", choice.value) : "null")}, change: {(choice.change != null ? string.Join(",", choice.change) : "null")}");
     }
 
-    private void ApplyVariableChange(string variable, int change)
+    private void ApplyVariableChange(string[] variables, int[] changes)
     {
-        switch (variable)
+        Debug.Log("changing variables called");
+        for (int i = 0; i < variables.Length; i++)
         {
-            case "mechHealth": globalManagerScript.mechHealth += change; break;
-            case "waterAmount": globalManagerScript.waterAmount += change; break;
-            case "maxWaterAmount": globalManagerScript.maxWaterAmount += change; break;
-            case "townDriftBond": globalManagerScript.townDriftBond += change; break;
-            case "townFlameBond": globalManagerScript.townFlameBond += change; break;
-            case "townSaltBond": globalManagerScript.townSaltBond += change; break;
+            string variable = variables[i];
+            int change = changes[i];
+            switch (variable)
+            {
+                case "mechHealth": globalManagerScript.mechHealth += change; break;
+                case "waterAmount": globalManagerScript.waterAmount += change; break;
+                case "maxWaterAmount": globalManagerScript.maxWaterAmount += change; break;
+                case "townDriftBond": globalManagerScript.townDriftBond += change; break;
+                case "townFlameBond": globalManagerScript.townFlameBond += change; break;
+                case "townSaltBond": globalManagerScript.townSaltBond += change; break;
+            }
+            Debug.Log("Updated variable: " + variable);
         }
+        
         globalManagerScript.Refresh();
     }
 
@@ -240,30 +268,40 @@ public class TownDialogueScript : MonoBehaviour
 
     void Update()
     {
-        // Encounter dialogue: use pass
-        if (clickAction.triggered && pass)
+        if (clickAction.triggered && (pass || end))
         {
-            pass = false; // Prevent multiple triggers
-            NewDialogue();
-            Debug.Log("Encounter dialogue click handled.");
-        }
-        // Single choice case: use end
-        else if (clickAction.triggered && end)
-        {
-            end = false; // Prevent multiple triggers
+
+
             if (currentEntry != null && currentEntry.choices != null && currentEntry.choices.Length == 1)
             {
                 var choice = currentEntry.choices[0];
-                if (choice.nextDialogueID == -1)
+                if (choice.nextDialogueID == -1 && pass)
                 {
-                    EndDialogue();
+                    pass = false; // Prevent multiple triggers
+                    NewDialogue();
                     Debug.Log("Single choice dialogue ended.");
+                }
+                else if (choice.nextDialogueID == -1 && end)
+                {
+                    end = false; // Prevent multiple triggers
+                    EndDialogue();
+                    Debug.Log("Single choice dialogue will end on next click.");
+                }
+                else if (end)
+                {
+                    end = false; // Reset end to false after handling single choice
+                    ShowDialogue(choice.nextDialogueID);
+                    Debug.Log("Single choice advanced to next dialogue ID: " + choice.nextDialogueID + " end thing: " + end);
+                    temp = false;
+                    StartCoroutine(timer(temp));
                 }
                 else
                 {
+                    pass = false; // Reset pass to false after handling single choice
                     ShowDialogue(choice.nextDialogueID);
                     Debug.Log("Single choice advanced to next dialogue ID: " + choice.nextDialogueID);
-                    StartCoroutine(timer());
+                    temp = true;
+                    StartCoroutine(timer(temp));
                 }
             }
         }
@@ -272,13 +310,25 @@ public class TownDialogueScript : MonoBehaviour
             end = false; // Reset end to false after handling single choice
             EndDialogue();
         }
+        if (pass && currentEntry.choices.Length == 1 && currentEntry.choices[0].nextDialogueID == -1)
+        {
+            pass = false; // Reset pass to false after handling single choice
+            NewDialogue();
+        }
     }
 
-    IEnumerator timer()
+    IEnumerator timer(bool thisTemp)
     {
         yield return new WaitForSeconds(0.2f);
         Debug.Log("Timer completed, setting end to true.");
-        end = true; // Set end to true after 0.1 seconds
+        if (thisTemp)
+        {
+            pass = true;
+        }
+        else
+        {
+            end = true;
+        }
     }
 
     // --- DIALOGUE ENTRY POINTS ---
@@ -314,7 +364,7 @@ public class TownDialogueScript : MonoBehaviour
         npcName = "NPC" + (num - 2);
         NPCSpriteRenderer.sprite = NPCsprites[num];
         LoadDialogueFile("encounterDialogue"); // encounterDialogue.json
-        Debug.Log("Loading encounter dialogue for NPC: " + npcName);
+        Debug.Log("Loading encounter dialogue for NPC: " + npcName + " with ID: " + num);
         switch (num)
         {
             case 3: ShowDialogue(globalManagerScript.npc1Story + 1); break;
