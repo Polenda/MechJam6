@@ -75,20 +75,18 @@ public class TownDialogueScript : MonoBehaviour
         NPCSpriteRenderer.enabled = false;
     }
 
-    // Loads a dialogue file from Resources/Dialogue/filename.json
-    private void LoadDialogueFile(string filename)
+    public void LoadDialogueFile(string filename, System.Action onLoaded = null)
     {
-        currentDialogueFileFileName = filename;
-        string path = Path.Combine(Application.dataPath, "Dialogue", filename + ".json");
-        if (File.Exists(path))
+        string resourcePath = "dialogue/" + filename; // Resources/dialogue/filename.json
+        TextAsset jsonAsset = Resources.Load<TextAsset>(resourcePath);
+        if (jsonAsset == null)
         {
-            string json = File.ReadAllText(path);
-            currentDialogueFile = JsonUtility.FromJson<DialogueFile>(json);
+            Debug.LogError("Dialogue file not found in Resources: " + resourcePath);
+            return;
         }
-        else
-        {
-            Debug.LogError("Dialogue file not found: " + path);
-        }
+        currentDialogueFile = JsonUtility.FromJson<DialogueFile>(jsonAsset.text);
+        if (onLoaded != null)
+            onLoaded.Invoke();
     }
 
     private void ShowDialogue(int id, string name = null)
@@ -348,26 +346,28 @@ public class TownDialogueScript : MonoBehaviour
     {
         currentNPC = 1;
         NPCSpriteRenderer.sprite = NPCsprites[0];
-        LoadDialogueFile("saltDialogue");
-
         string weekName = "Week" + globalManagerScript.week;
-        DialogueEntry firstEntry = System.Array.Find(
-            currentDialogueFile.dialogues,
-            d => d.name == weekName
-        );
 
-        if (firstEntry != null)
+        LoadDialogueFile("saltDialogue", () =>
         {
-            currentEntry = firstEntry;
-            dialogueID = firstEntry.id;
-            currentWeekName = weekName;
-            ShowDialogue(dialogueID, currentWeekName);
-        }
-        else
-        {
-            Debug.LogError("No salt dialogue found for week: " + globalManagerScript.week);
-            EndDialogue();
-        }
+            DialogueEntry firstEntry = System.Array.Find(
+                currentDialogueFile.dialogues,
+                d => d.name == weekName
+            );
+
+            if (firstEntry != null)
+            {
+                currentEntry = firstEntry;
+                dialogueID = firstEntry.id;
+                currentWeekName = weekName;
+                ShowDialogue(dialogueID, currentWeekName);
+            }
+            else
+            {
+                Debug.LogError("No salt dialogue found for week: " + globalManagerScript.week);
+                EndDialogue();
+            }
+        });
     }
 
     public void flameNPCDialogue()
@@ -431,14 +431,12 @@ public class TownDialogueScript : MonoBehaviour
 
         npcName = "NPC" + (num - 2);
         NPCSpriteRenderer.sprite = NPCsprites[num];
-        LoadDialogueFile("encounterDialogue"); // encounterDialogue.json
 
-        // Predetermined lists of starting IDs for each NPC encounter
-        int[] npc1Ids = { 1, 2, 5 }; // Example: week 1 = id 1, week 2 = id 4, week 3 = id 7
+        int[] npc1Ids = { 1, 2, 5 };
         int[] npc2Ids = { 1, 4, 5 };
         int[] npc3Ids = { 1, 12, 16 };
 
-        int weekIndex = Mathf.Clamp(globalManagerScript.week - 1, 0, 2); // Ensure index is valid
+        int weekIndex = Mathf.Clamp(globalManagerScript.week - 1, 0, 2);
 
         int startId = -1;
         switch (num)
@@ -453,6 +451,11 @@ public class TownDialogueScript : MonoBehaviour
         }
 
         Debug.Log($"Loading encounter dialogue for NPC: {npcName} with start ID: {startId} (week {globalManagerScript.week})");
-        ShowDialogue(startId);
+
+        LoadDialogueFile("encounterDialogue", () =>
+        {
+            // Now the JSON is loaded, so ShowDialogue will work
+            ShowDialogue(startId);
+        });
     }
 }
